@@ -1,0 +1,70 @@
+\documentclass[
+  year = 2020,
+  altyear = 2563,
+  language = english,
+  translationsInputFile = ../text-english.tex,
+  translationsAutoload = false,
+  eventsCsv = ../data/events.csv,
+  markDefaultsCsv = ../data/mark_defaults.csv,
+  imageFolder = ../images/pdf/,
+  %imageFolder = ../images/pdf-92dpi/,% For the desktop download version
+  choralOctavoPaper,% 6.75in x 10.5in
+  hMargin = 17mm,
+  topMargin = 20.5mm,
+  bottomMargin = 10mm,
+  %showtrims,
+  %varnishmask,
+]{wallcalendar}
+
+\usepackage{wall-local}
+
+\begin{document}
+
+% === Cover ===========================================================
+
+\WallCoverPage
+
+% === Frontmatter =====================================================
+
+\newpage
+
+\ifvarnishmask
+\mbox{}
+\else
+\txt{Frontmatter Text}
+\fi
+
+% === Months ==========================================================
+
+\MonthPage[layout=full page, put photo=full page]{January}%
+\MonthPage[layout=full page, put photo=full page]{February}%
+\MonthPage[layout=full page, put photo=full page]{March}%
+\MonthPage[layout=full page, put photo=full page]{April}%
+\MonthPage[layout=full page, put photo=full page]{May}%
+\MonthPage[layout=full page, put photo=full page]{June}%
+\MonthPage[layout=full page, put photo=full page]{July}%
+\MonthPage[layout=full page, put photo=full page]{August}%
+\MonthPage[layout=full page, put photo=full page]{September}%
+\MonthPage[layout=full page, put photo=full page]{October}%
+\MonthPage[layout=full page, put photo=full page]{November}%
+\MonthPage[layout=full page, put photo=full page]{December}%
+
+% === Year Planner ====================================================
+
+\YearPlannerPortraitPage
+
+% === Thumbnails ======================================================
+
+\ThumbsPage
+
+% === Addresses =======================================================
+
+\newpage
+
+\ifvarnishmask
+\mbox{}
+\else
+\input{./wall-addresses.tex}
+\fi
+
+\end{document}

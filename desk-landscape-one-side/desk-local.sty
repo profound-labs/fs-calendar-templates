@@ -1,0 +1,165 @@
+\ProvidesPackage{desk-local}
+
+\usepackage{calendar-local}
+\usepackage{desk-landscape-layout}
+
+\renewcommand\fullPageFmt{%
+  \renewcommand*\monthFmt{\LARGE}%
+  \renewcommand*\yearFmt{\LARGE}%
+  \renewcommand*\dayLetterColor{}%
+  \renewcommand*\dayLetterFmt{\tiny}%
+  \renewcommand*\dayTextFmt{\small}%
+  \renewcommand*\quoteFmt{\fontsize{12}{16}\selectfont}%
+  \renewcommand*\headingFmt{\centering}%
+  \renewcommand*\calendarFmt{\centering}%
+  \renewcommand*\eventsFmt{\setlength{\parindent}{0pt}\raggedleft\footnotesize}%
+}
+
+\setlength{\quoteBoxHeight}{30mm}
+
+% === Year Planner ===
+
+\tikzstyle{year planner portrait}=[
+  week list,
+  day xshift=15pt,
+  day yshift=12pt,
+  month text={\plannerPortraitMonthFmt\@tr@monthNumName{\pgfcalendarcurrentmonth}},
+  day text={\plannerPortraitDayFmt\%d-},
+  every month/.append style={%
+    anchor=south,
+    inner xsep=0pt,
+    yshift=5mm,
+    xshift=2.5mm,
+  },
+  day letter headings,
+  day heading/.style={gray, xshift=0pt, scale=0.85},
+  month label above centered,
+  every day/.style={anchor=mid},
+]
+
+\renewcommand\preYearPlannerPageHook{%
+  \renewcommand\plannerYearFmt{\fontsize{22}{22}\selectfont\color{orangegold}}%
+  \renewcommand\plannerPortraitMonthFmt{\fontsize{10}{10}\selectfont\bfseries\color{darkgold}}%
+  \renewcommand\plannerPortraitDayFmt{\fontsize{7}{7}\selectfont\color{plannerdatenum}}%
+  \renewcommand\monthMarkFmt{\fontsize{5.5}{5.5}\selectfont\color{textbody}}%
+  \renewcommand\symbolSeparator{,}%
+  \setlength{\markNumberAbove}{-6pt}%
+  \setlength{\markNumberRight}{-6pt}%
+  \setlength{\markDayTextAbove}{-8pt}%
+  \setlength{\markDayTextRight}{-6pt}%
+}
+
+\setlength{\thumbSep}{4mm}
+\renewcommand\thumbCaptionFmt{\fontsize{9}{12}\selectfont}
+
+\renewcommand{\FrontmatterFmt}{%
+\vspace*{-4\baselineskip}%
+\fontsize{8}{11}\selectfont%
+\setlength{\parskip}{0.5\baselineskip}%
+\enlargethispage*{\baselineskip}%
+}
+
+\setlength{\plannerTitleSep}{4mm}
+\setlength{\plannerNotesSep}{3mm}
+\setlength{\plannerTopSkip}{-3\baselineskip}
+
+\renewcommand{\calendarMarks}{%
+  \parseMonthMarksDayText%
+  \parseMonthMarksNote%
+}
+
+% =============================== January ======================================
+
+\SetQuote[xOffset=0pt, yOffset=-25pt]{January}{\txt{January Quote}}
+
+\SetPhoto[bleed=3mm, file={January}, thumbFile={}, caption={\txt{January Caption}}, yOffset=-102mm]{January}
+\SetCalendar[bg/.style={opacity=1}]{January}
+\SetEvents{January}{\calendarMarks}{\calendarText}
+
+% =============================== February =====================================
+
+\SetQuote[xOffset=0pt, yOffset=-25pt]{February}{\txt{February Quote}}
+
+\SetPhoto[bleed=3mm, file={February}, thumbFile={}, caption={\txt{February Caption}}, yOffset=-102mm]{February}
+\SetCalendar[bg/.style={opacity=1}]{February}
+\SetEvents{February}{\calendarMarks}{\calendarText}
+
+% =============================== March ========================================
+
+\SetQuote[xOffset=0pt, yOffset=-25pt]{March}{\txt{March Quote}}
+
+\SetPhoto[bleed=3mm, file={March}, thumbFile={}, caption={\txt{March Caption}}, yOffset=-102mm]{March}
+\SetCalendar[bg/.style={opacity=1}]{March}
+\SetEvents{March}{\calendarMarks}{\calendarText}
+
+% =============================== April ========================================
+
+\SetQuote[xOffset=0pt, yOffset=-25pt]{April}{\txt{April Quote}}
+
+\SetPhoto[bleed=3mm, file={April}, thumbFile={}, caption={\txt{April Caption}}, yOffset=-102mm]{April}
+\SetCalendar[bg/.style={opacity=1}]{April}
+\SetEvents{April}{\calendarMarks}{\calendarText}
+
+% =============================== May ==========================================
+
+\SetQuote[xOffset=0pt, yOffset=-25pt]{May}{\txt{May Quote}}
+
+\SetPhoto[bleed=3mm, file={May}, thumbFile={}, caption={\txt{May Caption}}, yOffset=-102mm]{May}
+\SetCalendar[bg/.style={opacity=1}]{May}
+\SetEvents{May}{\calendarMarks}{\calendarText}
+
+% =============================== June =========================================
+
+\SetQuote[xOffset=0pt, yOffset=-25pt]{June}{\txt{June Quote}}
+
+\SetPhoto[bleed=3mm, file={June}, thumbFile={}, caption={\txt{June Caption}}, yOffset=-102mm]{June}
+\SetCalendar[bg/.style={opacity=1}]{June}
+\SetEvents{June}{\calendarMarks}{\calendarText}
+
+% =============================== July =========================================
+
+\SetQuote[xOffset=0pt, yOffset=-25pt]{July}{\txt{July Quote}}
+
+\SetPhoto[bleed=3mm, file={July}, thumbFile={}, caption={\txt{July Caption}}, yOffset=-102mm]{July}
+\SetCalendar[bg/.style={opacity=1}]{July}
+\SetEvents{July}{\calendarMarks}{\calendarText}
+
+% =============================== August =======================================
+
+\SetQuote[xOffset=0pt, yOffset=-25pt]{August}{\txt{August Quote}}
+
+\SetPhoto[bleed=3mm, file={August}, thumbFile={}, caption={\txt{August Caption}}, yOffset=-102mm]{August}
+\SetCalendar[bg/.style={opacity=1}]{August}
+\SetEvents{August}{\calendarMarks}{\calendarText}
+
+% =============================== September ====================================
+
+\SetQuote[xOffset=0pt, yOffset=-25pt]{September}{\txt{September Quote}}
+
+\SetPhoto[bleed=3mm, file={September}, thumbFile={}, caption={\txt{September Caption}}, yOffset=-102mm]{September}
+\SetCalendar[bg/.style={opacity=1}]{September}
+\SetEvents{September}{\calendarMarks}{\calendarText}
+
+% =============================== October ======================================
+
+\SetQuote[xOffset=0pt, yOffset=-25pt]{October}{\txt{October Quote}}
+
+\SetPhoto[bleed=3mm, file={October}, thumbFile={}, caption={\txt{October Caption}}, yOffset=-102mm]{October}
+\SetCalendar[bg/.style={opacity=1}]{October}
+\SetEvents{October}{\calendarMarks}{\calendarText}
+
+% =============================== November =====================================
+
+\SetQuote[xOffset=0pt, yOffset=-25pt]{November}{\txt{November Quote}}
+
+\SetPhoto[bleed=3mm, file={November}, thumbFile={}, caption={\txt{November Caption}}, yOffset=-102mm]{November}
+\SetCalendar[bg/.style={opacity=1}]{November}
+\SetEvents{November}{\calendarMarks}{\calendarText}
+
+% =============================== December =====================================
+
+\SetQuote[xOffset=0pt, yOffset=-25pt]{December}{\txt{December Quote}}
+
+\SetPhoto[bleed=3mm, file={December}, thumbFile={}, caption={\txt{December Caption}}, yOffset=-102mm]{December}
+\SetCalendar[bg/.style={opacity=1}]{December}
+\SetEvents{December}{\calendarMarks}{\calendarText}

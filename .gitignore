@@ -5,8 +5,13 @@
 *.lof
 *.fls
 *.fdb_latexmk
+*.out
 
-# Project output
+# Build artefacts
+wall.pdf
+desk.pdf
+desk-stand.pdf
+
 wallcalendar.zip
 doc/wallcalendar.pdf
 doc/wallcalendar-code.pdf
