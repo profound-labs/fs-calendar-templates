@@ -1,0 +1,78 @@
+\documentclass[
+  year = 2020,
+  altyear = 2563,
+  language = english,
+  translationsInputFile = text-english.tex,
+  translationsAutoload = false,
+  eventsCsv = ../data/events.csv,
+  markDefaultsCsv = ../data/mark_defaults.csv,
+  imageFolder = ../images/jpg/,
+  %imageFolder = ../images/pdf-92dpi/,% For the desktop download version
+  paperWidth = 220mm,% (6.75in * 2) / 1.5555
+  paperHeight = 171mm,% 6.75in
+  hMargin = 17mm,
+  topMargin = 20.5mm,
+  bottomMargin = 10mm,
+  %showtrims,
+  %varnishmask,
+]{wallcalendar}
+
+\usepackage{wall-local}
+
+\begin{document}
+
+%\mbox{}
+%\clearpage
+
+%% === Cover ===========================================================
+%
+%\WallCoverPage
+%
+%% === Frontmatter =====================================================
+%
+%\newpage
+%
+%\ifvarnishmask
+%\mbox{}
+%\else
+%\txt{Frontmatter Text}
+%\fi
+
+% === Months ==========================================================
+
+%\MonthPage[layout=photo and notes, put photo=full page]{January}%
+
+\MonthPage[layout=photo and notes, put photo=portrait]{February}%
+\MonthPage[layout=photo and notes, put photo=portrait]{March}%
+
+%\MonthPage[layout=small landscape, put photo=full width]{April}%
+%\MonthPage[layout=small landscape, put photo=full width]{May}%
+%\MonthPage[layout=small landscape, put photo=full width]{June}%
+%\MonthPage[layout=small landscape, put photo=full width]{July}%
+%\MonthPage[layout=small landscape, put photo=full width]{August}%
+
+\MonthPage[layout=photo and notes, put photo=portrait]{September}%
+
+%\MonthPage[layout=small landscape, put photo=full width]{October}%
+%\MonthPage[layout=small landscape, put photo=full width]{November}%
+%\MonthPage[layout=small landscape, put photo=full width]{December}%
+
+%% === Year Planner ====================================================
+%
+%\YearPlannerPortraitPage
+%
+%% === Thumbnails ======================================================
+%
+%\ThumbsPage
+%
+%% === Addresses =======================================================
+%
+%\newpage
+%
+%\ifvarnishmask
+%\mbox{}
+%\else
+%\input{./wall-addresses.tex}
+%\fi
+
+\end{document}
