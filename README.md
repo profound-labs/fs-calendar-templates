@@ -195,6 +195,28 @@ there is no top bleed, so that is an area *177.45mm wide and 216.7mm tall*.
 The ratio of that is 1.2211. At 300dpi, in pixels (height x width):
 *2559 x 2095*.
 
+*Portrait, Two Side: Three-side bleed*
+
+Photo is full height, on the left or right side.
+
+The photo width is 2/3 of paper width.
+
+Photo has bleed cut on top and bottom, plus one of left or right.
+
+Width: 220 * (2/3) = 146.66 + 3 = 149.66
+
+Height: 171 + 6 = 177
+
+Ratio: 177 / 150 = 1.18
+
+In pixels for 300dpi: 2090 x 1771 px
+
+177mm = 6.9685 inch 
+6.9685 * 300 = 2090.55
+
+150mm = 5.9055 inch
+5.9055 * 300 = 1771.65
+
 ### Editing
 
 - open JPG
