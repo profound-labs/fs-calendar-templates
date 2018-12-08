@@ -1,6 +1,11 @@
 \ProvidesPackage{desk-local}
 
-\usepackage{calendar-local}
+\input{../calendar-shared.tex}
+
+\luadirect{
+require("../template-helpers/helpers.lua")
+setDateTexts(tonumber(\CalendarYear), \luastring{\@wall@eventsCsv})
+}
 
 \renewcommand\fullPageFmt{%
   \renewcommand*\monthFmt{\LARGE}%

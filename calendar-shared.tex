@@ -1,13 +1,21 @@
-\ProvidesPackage{calendar-local}
+%         <\/><\/><\/><\/><\/><\/><\/>
+%     <\/></\></\></\></\></\></\></\><\/>
+%     </\>                            </\>
+%  <\/>                                  <\/>
+%  </\>                                  </\>
+% <\/>  Shared macros for each template   <\/>
+% </\>                                    </\>
+%  <\/>                                  <\/>
+%  </\>                                  </\>
+%     <\/>                            <\/>
+%     </\><\/><\/><\/><\/><\/><\/><\/></\>
+%         </\></\></\></\></\></\></\>
 
+% NOTE: input path is relative to main document, such as wall.tex, which is in
+% the template folders now.
 \input{../translation-keys.tex}
 
 \LoadTranslations
-
-\luadirect{
-require("../template-helpers/helpers.lua")
-setDateTexts(tonumber(\CalendarYear), \luastring{\@wall@eventsCsv})
-}
 
 % === Fonts ===
 
@@ -27,8 +35,11 @@ setDateTexts(tonumber(\CalendarYear), \luastring{\@wall@eventsCsv})
   BoldFont = Shaker 2 Bold,
 ]{Shaker Pali Regular}
 
+\newfontfamily\DejavuSans{DejaVu Sans}
+
 % === Packages ===
 
+\usepackage{ifthen}
 \usepackage{textcomp}
 
 \usepackage{soul}
@@ -68,6 +79,18 @@ setDateTexts(tonumber(\CalendarYear), \luastring{\@wall@eventsCsv})
 
 \definecolor{browntan}{cmyk}{0, 0.15, 0.38, 0.36}
 
+\newcommand\WallCoverPage{%
+  \IfFileExists{./wall-cover-\@wall@calendarLanguage.tex}%
+  {\input{./wall-cover-\@wall@calendarLanguage.tex}}%
+  {\input{./wall-cover.tex}}
+}%
+
+\newcommand\DeskCoverPage{%
+  \IfFileExists{./desk-cover-\@wall@calendarLanguage.tex}%
+  {\input{./desk-cover-\@wall@calendarLanguage.tex}}%
+  {\input{./desk-cover.tex}}
+}%
+
 % === Year Planner Page ===
 
 \newcommand\plannerYearFmt{\fontsize{26}{26}\selectfont\color{orangegold}}
@@ -82,6 +105,51 @@ setDateTexts(tonumber(\CalendarYear), \luastring{\@wall@eventsCsv})
 \newcommand\preYearPlannerPageHook{}
 
 \newcommand\printPlannerTitle{\plannerYearFmt \CalendarYear\ / \CalendarAltYear}
+
+\newcommand\tabcolgap{\hspace*{20pt}}
+
+\tikzstyle{year planner portrait}=[
+  week list,
+  day xshift=16pt,
+  day yshift=14pt,
+  month text={\plannerPortraitMonthFmt\@tr@monthNumName{\pgfcalendarcurrentmonth}},
+  day text={\plannerPortraitDayFmt\%d-},
+  every month/.append style={%
+    anchor=south,
+    inner xsep=0pt,
+    yshift=5mm,
+    xshift=2.5mm,
+  },
+  day letter headings,
+  day heading/.style={gray, xshift=0pt, scale=0.85},
+  month label above centered,
+  every day/.style={anchor=mid},
+]
+
+% Using the /parseYearEvents values, but calling a different helper function
+% #1 = option keys
+\newcommand*\parseYearEventsAsThreeColsTable[1][]{%
+\pgfkeys{/parseYearEvents, defaults, #1,
+  year/.get=\@t@year,
+  filter pred/.get=\@t@filterPred,
+  events csv/.get=\@t@eventsCsv,
+}%
+\luadirect{
+require("../template-helpers/helpers.lua")
+yearEventsAsThreeColsTable(
+  tonumber(\@t@year),
+  \@t@filterPred,
+  \luastring{\@t@eventsCsv}
+)}}
+
+\renewcommand\plannerEvents{%
+\hspace*{-\@wall@leftMargin}%
+\begin{minipage}{\calPaperWidth}%
+\centering
+\fontsize{9}{12}\selectfont%
+\parseYearEventsAsThreeColsTable[filter pred = hasNote]%
+\par%
+\end{minipage}}
 
 \newcommand\YearPlannerPortraitPage{%
 \newpage
@@ -148,10 +216,9 @@ setDateTexts(tonumber(\CalendarYear), \luastring{\@wall@eventsCsv})
 \hspace*{3mm}
 % Thumbnail photo
 \begin{minipage}[b][\@wall@thumbHeight]{\@wall@thumbWidth}%
-% FIXME placeholder
-%\placeholder{%
+\placeholder{hasvarnish}{%
 \includegraphics[ keepaspectratio, height=\@wall@thumbHeight ]{\@wall@thumbFile}%
-%}%
+}%
 \end{minipage}%
 }
 
@@ -163,10 +230,9 @@ setDateTexts(tonumber(\CalendarYear), \luastring{\@wall@eventsCsv})
 \pgfkeys{/Photo/#1/caption/.get=\@wall@photoCaption}%
 % Thumbnail photo
 \begin{minipage}[b][\@wall@thumbHeight]{\@wall@thumbWidth}%
-% FIXME placeholder
-%\placeholder{%
+\placeholder{hasvarnish}{%
 \includegraphics[ keepaspectratio, height=\@wall@thumbHeight ]{\@wall@thumbFile}%
-%}%
+}%
 \end{minipage}%
 \hspace*{3mm}
 % Thumbnail caption
@@ -281,6 +347,8 @@ setDateTexts(tonumber(\CalendarYear), \luastring{\@wall@eventsCsv})
 
 % === Macros ===
 
+\newcommand*\quoteRef[1]{\itshape #1}
+
 \sodef\soChapter{}{.1em}{.5em plus.1em}{.1em plus.1em minus.1em}
 
 \newcommand\spacedcdot{\hspace{0.3em}$\cdot$\hspace{0.3em}}
@@ -315,6 +383,13 @@ setDateTexts(tonumber(\CalendarYear), \luastring{\@wall@eventsCsv})
 
 \end{multicols}%
 }
+
+\newcommand\parseMonthMarksDayTextAsCornerMarks{%
+\luadirect{
+require("../template-helpers/helpers.lua")
+tex.sprint(';')
+monthMarksDayTextAsCornerMarks(\luastring{\theMonthName}, nil, \luastring{\@wall@eventsCsv})
+}}
 
 \newcommand{\calendarMarks}{%
   \parseMonthMarksDayText%

@@ -1,7 +1,31 @@
 \ProvidesPackage{desk-local}
 
-\usepackage{calendar-local}
+\input{../calendar-shared.tex}
+
+\luadirect{
+require("../template-helpers/helpers.lua")
+setDateTexts(tonumber(\CalendarYear), \luastring{\@wall@eventsCsv})
+}
+
+\definecolor{gridcolor}{gray}{0.85}
+\colorlet{mooncolor}{darkgold}
+
 \usepackage{desk-landscape-layout}
+
+\setlength{\plannerNotesSep}{8mm}
+\setlength{\plannerTitleSep}{7mm}
+\setlength{\plannerTopSkip}{-\baselineskip}
+
+\renewcommand{\FrontmatterFmt}{%
+  \fontsize{9}{14}\selectfont%
+  \setlength{\parskip}{0.5\baselineskip}%
+  \vspace*{-4\baselineskip}%
+}
+
+\renewcommand{\calendarMarks}{%
+  \parseMonthMarksDayTextAsCornerMarks%
+  \parseMonthMarksNote%
+}
 
 \renewcommand\fullPageFmt{%
   \renewcommand*\monthFmt{\LARGE}%
