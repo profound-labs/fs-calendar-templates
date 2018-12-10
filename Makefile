@@ -22,6 +22,9 @@ desk-stand:
 wall-portrait-two-side:
 	cd wall-portrait-two-side && $(LATEX) $(LATEX_OPTS) wall.tex
 
+wall-portrait-largecal-one-side:
+	cd wall-portrait-largecal-one-side && $(LATEX) $(LATEX_OPTS) wall.tex
+
 calculate-data:
 	@go run ./template-helpers/calculate-data.go $(YEAR)
 
