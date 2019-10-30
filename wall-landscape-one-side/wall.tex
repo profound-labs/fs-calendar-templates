@@ -1,14 +1,14 @@
 \documentclass[
-  year = 2019,
-  altyear = 2562,
+  year = 2021,
+  altyear = 2564,
   language = english,
-  translationsInputFile = text-english.tex,
+  translationsInputFile = ../text-english.tex,
   translationsAutoload = false,
-  eventsCsv = ./data/events.csv,
-  markDefaultsCsv = ./data/mark_defaults.csv,
-  imageFolder = ./images/jpg/,
-  %imageFolder = ./images/pdf-92dpi/,% For the desktop download version
-  choralOctavoPaper,% 6.75in x 10.5in
+  eventsCsv = ../data/events.csv,
+  markDefaultsCsv = ../data/mark_defaults.csv,
+  imageFolder = ../images/jpg/,
+  %imageFolder = ../images/jpg-92dpi/,% For the desktop download version
+  choralOctavoPaper,% 6.75in x 10.5in = 171.45mm x 266.7mm
   hMargin = 17mm,
   topMargin = 20.5mm,
   bottomMargin = 10mm,
@@ -18,48 +18,56 @@
 
 \usepackage{wall-local}
 
+\makeatletter
+\graphicspath{{./},{../},{\@wall@imageFolder}}
+\makeatother
+
 \begin{document}
 
-% === Cover ===========================================================
+%\AddToShipoutPictureFG{\put(0,\LenToUnit{\calPaperHeight - 10mm}){%
+%\includegraphics[keepaspectratio, width=6.75in]{wire-holes}%
+%}}
 
-\WallCoverPage
-
-% === Frontmatter =====================================================
-
-\newpage
-
-\ifvarnishmask
-\mbox{}
-\else
-\txt{Frontmatter Text}
-\fi
-
-% === Months ==========================================================
-
-\MonthPage[layout=small landscape, put photo=full width]{January}%
-\MonthPage[layout=small landscape, put photo=full width]{February}%
-\MonthPage[layout=small landscape, put photo=full width]{March}%
-\MonthPage[layout=small landscape, put photo=full width]{April}%
-\MonthPage[layout=small landscape, put photo=full width]{May}%
-\MonthPage[layout=small landscape, put photo=full width]{June}%
-\MonthPage[layout=small landscape, put photo=full width]{July}%
-\MonthPage[layout=small landscape, put photo=full width]{August}%
-\MonthPage[layout=small landscape, put photo=full width]{September}%
-\MonthPage[layout=small landscape, put photo=full width]{October}%
-\MonthPage[layout=small landscape, put photo=full width]{November}%
-\MonthPage[layout=small landscape, put photo=full width]{December}%
-
-% === Year Planner ====================================================
-
-\YearPlannerPortraitPage
-
-% === Thumbnails ======================================================
-
-\ThumbsPage
-
-% === Addresses =======================================================
-
-\newpage
+%% === Cover ===========================================================
+%
+%\WallCoverPage
+%
+%% === Frontmatter =====================================================
+%
+%\newpage
+%
+%\ifvarnishmask
+%\mbox{}
+%\else
+%\txt{Frontmatter Text}
+%\fi
+%
+%% === Months ==========================================================
+%
+%\MonthPage[layout=small landscape, put photo=full width]{January}%
+%\MonthPage[layout=small landscape, put photo=full width]{February}%
+%\MonthPage[layout=small landscape, put photo=full width]{March}%
+%\MonthPage[layout=small landscape, put photo=full width]{April}%
+%\MonthPage[layout=small landscape, put photo=full width]{May}%
+%\MonthPage[layout=small landscape, put photo=full width]{June}%
+%\MonthPage[layout=small landscape, put photo=full width]{July}%
+%\MonthPage[layout=small landscape, put photo=full width]{August}%
+%\MonthPage[layout=small landscape, put photo=full width]{September}%
+%\MonthPage[layout=small landscape, put photo=full width]{October}%
+%\MonthPage[layout=small landscape, put photo=full width]{November}%
+%\MonthPage[layout=small landscape, put photo=full width]{December}%
+%
+%% === Year Planner ====================================================
+%
+%\YearPlannerPortraitPage
+%
+%% === Thumbnails ======================================================
+%
+%\ThumbsPage
+%
+%% === Addresses =======================================================
+%
+%\newpage
 
 \ifvarnishmask
 \mbox{}
