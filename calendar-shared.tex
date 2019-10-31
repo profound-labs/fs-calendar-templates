@@ -18,6 +18,13 @@
 
 \LoadTranslations
 
+\graphicspath{{./},{../},{../images/},{\@wall@imageFolder}}
+
+\definecolor{gridcolor}{gray}{0.85}
+\colorlet{mooncolor}{darkgold}
+\colorlet{sunday}{black}
+
+
 % === Fonts ===
 
 \usepackage{fontspec}
@@ -118,9 +125,6 @@
 \newlength\plannerNotesSep
 \newlength\plannerTitleSep
 \newlength\plannerTopSkip
-\setlength{\plannerNotesSep}{3mm}
-\setlength{\plannerTitleSep}{7mm}
-\setlength{\plannerTopSkip}{0pt}
 
 \newcommand\preYearPlannerPageHook{}
 
@@ -128,23 +132,76 @@
 
 \newcommand\tabcolgap{\hspace*{20pt}}
 
-\tikzstyle{year planner portrait}=[
-  week list,
-  day xshift=17pt,
-  day yshift=15pt,
-  month text={\plannerPortraitMonthFmt\@tr@monthNumName{\pgfcalendarcurrentmonth}},
-  day text={\plannerPortraitDayFmt\%d-},
-  every month/.append style={%
-    anchor=south,
-    inner xsep=0pt,
-    yshift=6mm,
-    xshift=2.5mm,
-  },
-  day letter headings,
-  day heading/.style={gray, xshift=0pt, scale=0.7},
-  month label above centered,
-  every day/.style={anchor=mid},
-]
+\ifwall
+  \renewcommand\preYearPlannerPageHook{%
+    \setlength{\@wall@moonRaise}{-1.6pt}%
+    \renewcommand\monthMarkFmt{\fontsize{7.5}{7.5}\selectfont\color{textbody}}%
+    \renewcommand\plannerPortraitMonthFmt{\fontsize{12}{12}\selectfont\bfseries\color{darkgold}}%
+    \renewcommand\plannerPortraitDayFmt{\fontsize{10}{10}\selectfont\color{plannerdatenum}}%
+    \renewcommand\symbolSeparator{,}%
+    \setlength{\markNumberAbove}{-7pt}%
+    \setlength{\markNumberRight}{-7pt}%
+    \setlength{\markDayTextAbove}{-9pt}%
+    \setlength{\markDayTextRight}{-7pt}%
+  }
+  \setlength{\plannerNotesSep}{8mm}
+  \setlength{\plannerTitleSep}{7mm}
+  \setlength{\plannerTopSkip}{-13pt}
+\else
+  \renewcommand\preYearPlannerPageHook{%
+    \setlength{\@wall@moonRaise}{-1.7pt}%
+    \renewcommand\plannerYearFmt{\fontsize{22}{22}\selectfont\color{orangegold}}%
+    \renewcommand\monthMarkFmt{\fontsize{7}{7}\selectfont\color{textbody}}%
+    \renewcommand\plannerPortraitMonthFmt{\fontsize{10}{10}\selectfont\bfseries\color{darkgold}}%
+    \renewcommand\plannerPortraitDayFmt{\fontsize{9}{9}\selectfont\color{plannerdatenum}}%
+    \renewcommand\symbolSeparator{,}%
+    \setlength{\markNumberAbove}{-6.5pt}%
+    \setlength{\markNumberRight}{-5pt}%
+    \setlength{\markDayTextAbove}{-7.5pt}%
+    \setlength{\markDayTextRight}{-5pt}%
+  }
+  \setlength{\plannerNotesSep}{4mm}
+  \setlength{\plannerTitleSep}{3mm}
+  \setlength{\plannerTopSkip}{-40pt}
+\fi
+
+\ifwall
+  \tikzstyle{year planner portrait}=[
+    week list,
+    day xshift=17pt,
+    day yshift=15pt,
+    month text={\plannerPortraitMonthFmt\@tr@monthNumName{\pgfcalendarcurrentmonth}},
+    day text={\plannerPortraitDayFmt\%d-},
+    every month/.append style={%
+      anchor=south,
+      inner xsep=0pt,
+      yshift=6mm,
+      xshift=2.5mm,
+    },
+    day letter headings,
+    day heading/.style={gray, xshift=0pt, scale=0.8},
+    month label above centered,
+    every day/.style={anchor=mid},
+  ]
+\else
+  \tikzstyle{year planner portrait}=[
+    week list,
+    day xshift=15pt,
+    day yshift=12pt,
+    month text={\plannerPortraitMonthFmt\@tr@monthNumName{\pgfcalendarcurrentmonth}},
+    day text={\plannerPortraitDayFmt\%d-},
+    every month/.append style={%
+      anchor=south,
+      inner xsep=0pt,
+      yshift=5mm,
+      xshift=2.5mm,
+    },
+    day letter headings,
+    day heading/.style={gray, xshift=0pt, scale=0.8},
+    month label above centered,
+    every day/.style={anchor=mid},
+  ]
+\fi
 
 % Using the /parseYearEvents values, but calling a different helper function
 % #1 = option keys
@@ -210,8 +267,16 @@ yearEventsAsThreeColsTable(
 \setlength{\@wall@thumbCaptionWidth}{0.2333\calPaperWidth}% 40mm at 6.75in page width
 
 \newcommand\thumbFmt{}
-\newcommand\thumbMonthFmt{\fontsize{10}{13}\selectfont\bfseries}
-\newcommand\thumbCaptionFmt{\fontsize{10}{13}\selectfont}
+\newcommand\thumbMonthFmt{}
+\newcommand\thumbCaptionFmt{}
+
+\renewcommand\thumbMonthFmt{\fontsize{10}{13}\selectfont\bfseries}
+
+\ifwall
+\renewcommand\thumbCaptionFmt{\fontsize{10}{13}\selectfont}
+\else
+\renewcommand\thumbCaptionFmt{\fontsize{9}{12}\selectfont}
+\fi
 
 \def\@wall@thumbFile{}
 \def\@wall@photoCaption{}
@@ -285,6 +350,12 @@ yearEventsAsThreeColsTable(
 }{
   \setlength{\thumbSep}{\@t@b}
 }
+
+% FIXME: update the above ratio instead
+\ifwall\relax
+\else
+\setlength{\thumbSep}{4mm}
+\fi
 
 \setlength{\thumbColumnWidth}{0.5\calPaperWidth - \thumbSep}
 \setlength{\thumbColumnHeight}{\textheight}
@@ -429,7 +500,13 @@ monthMarksDayTextAsCornerMarks(\luastring{\theMonthName}, nil, \luastring{\@wall
 \colorlet{quoteboxbg}{browntan!25!black}
 
 \newlength\quoteBoxHeight
+
+\ifwall
 \setlength{\quoteBoxHeight}{34mm}
+\else
+\setlength{\quoteBoxHeight}{30mm}
+\fi
+
 
 \newcommand{\quoteBox}[1]{%
 \begin{tikzpicture}%
@@ -447,3 +524,8 @@ monthMarksDayTextAsCornerMarks(\luastring{\theMonthName}, nil, \luastring{\@wall
 \end{tikzpicture}%
 }
 
+\newcommand\wireHoles{%
+  \AddToShipoutPictureFG{\put(0,\LenToUnit{\calPaperHeight - 10mm}){%
+    \includegraphics[keepaspectratio, width=\calPaperWidth]{wire-holes}%
+  }}%
+}

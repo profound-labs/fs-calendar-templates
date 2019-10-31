@@ -1,15 +1,14 @@
 \ProvidesPackage{wall-local}
 
+\newif\ifwall
+\walltrue
+
 \input{../calendar-shared.tex}
 
 \luadirect{
-  require("../template-helpers/helpers.lua")
-  setDateTexts(tonumber(\CalendarYear), \luastring{\@wall@eventsCsv})
+require("../template-helpers/helpers.lua")
+setDateTexts(tonumber(\CalendarYear), \luastring{\@wall@eventsCsv})
 }
-
-\definecolor{gridcolor}{gray}{0.85}
-\colorlet{mooncolor}{darkgold}
-\colorlet{sunday}{black}
 
 \renewcommand*\quoteRef[1]{\vspace*{8pt}{\color[gray]{0.25}\itshape\fontsize{9}{14}\selectfont #1}}
 
@@ -43,24 +42,6 @@
   \setlength{\@t@calendar@hmargin}{50pt}%
   \setlength{\@t@calendar@verticalSpacing}{32mm + 5mm + 6.5mm}%
 }
-
-% === Year Planner ===
-
-\renewcommand\preYearPlannerPageHook{%
-  \setlength{\@wall@moonRaise}{-1.6pt}
-  \renewcommand\monthMarkFmt{\fontsize{7.5}{7.5}\selectfont\color{textbody}}%
-  \renewcommand\plannerPortraitMonthFmt{\fontsize{12}{12}\selectfont\color{darkgold}}%
-  \renewcommand\plannerPortraitDayFmt{\fontsize{10}{10}\selectfont\color{plannerdatenum}}%
-  \renewcommand\symbolSeparator{,}%
-  \setlength{\markNumberAbove}{-7pt}%
-  \setlength{\markNumberRight}{-7pt}%
-  \setlength{\markDayTextAbove}{-9pt}%
-  \setlength{\markDayTextRight}{-7pt}%
-}
-
-\setlength{\plannerNotesSep}{8mm}
-\setlength{\plannerTitleSep}{7mm}
-\setlength{\plannerTopSkip}{-\baselineskip}
 
 % =============================== Quote positions ==============================
 

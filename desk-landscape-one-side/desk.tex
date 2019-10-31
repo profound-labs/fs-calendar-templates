@@ -1,13 +1,13 @@
 \documentclass[
-  year = 2020,
-  altyear = 2563,
+  year = 2021,
+  altyear = 2564,
   language = english,
   translationsInputFile = ../text-english.tex,
   translationsAutoload = false,
   eventsCsv = ../data/events.csv,
-  markDefaultsCsv = ../data/mark_defaults.csv,
-  imageFolder = ../images/pdf/,
-  %imageFolder = ../images/pdf-92dpi/,% For the desktop download version
+  markDefaultsCsv = ../data/marks_desk.csv,
+  imageFolder = ../images/jpg/,
+  %imageFolder = ../images/jpg-92dpi/,% For the desktop download version
   a5Paper,% 148mm x 210mm
   hMargin = 6mm,
   topMargin = 20.5mm,
@@ -19,6 +19,8 @@
 \usepackage{desk-local}
 
 \begin{document}
+
+%\wireHoles
 
 % === Cover ===========================================================
 
@@ -51,23 +53,20 @@
 
 % === Year Planner ====================================================
 
-% FIXME year planner page
-%\YearPlannerPortraitPage
+\YearPlannerPortraitPage
 
 % === Thumbnails ======================================================
 
-% FIXME thumbs page
-%\ThumbsPage
+\ThumbsPage
 
 % === Addresses =======================================================
 
-% FIXME addresses page
-%\newpage
-%
-%\ifvarnishmask
-%\mbox{}
-%\else
-%\input{./desk-addresses.tex}
-%\fi
+\newpage
+
+\ifvarnishmask
+\mbox{}
+\else
+\input{./desk-addresses.tex}
+\fi
 
 \end{document}
