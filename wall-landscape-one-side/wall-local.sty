@@ -1,21 +1,44 @@
 \ProvidesPackage{wall-local}
 
-\usepackage{calendar-local}
+\input{../calendar-shared.tex}
 
-\usepackage{ifthen}
+\luadirect{
+  require("../template-helpers/helpers.lua")
+  setDateTexts(tonumber(\CalendarYear), \luastring{\@wall@eventsCsv})
+}
 
-\renewcommand*\quoteRef[1]{\vspace*{8pt}\itshape\fontsize{9}{14}\selectfont #1}
+\definecolor{gridcolor}{gray}{0.85}
+\colorlet{mooncolor}{darkgold}
+\colorlet{sunday}{black}
+
+\renewcommand*\quoteRef[1]{\vspace*{8pt}{\color[gray]{0.25}\itshape\fontsize{9}{14}\selectfont #1}}
+
+\renewcommand{\FrontmatterFmt}{%
+  \fontsize{9}{14}\selectfont%
+  \setlength{\parskip}{0.5\baselineskip}%
+  \vspace*{-4\baselineskip}%
+}
+
+\renewcommand{\calendarMarks}{%
+  \parseMonthMarksDayTextAsCornerMarks%
+  \parseMonthMarksNote%
+}
+
+\renewcommand*{\tikzMonthCalendar@smallLandscape}[1]{%
+  \pgfkeys{/Events/\monthName{#1}/marks/.get=\@eventmarks}%
+  \calendar (cal#1) [aldebaran, dates=\CalendarYear-#1-01 to \CalendarYear-#1-last] \@eventmarks;%
+}
 
 \renewcommand\smallLandscapeFmt{%
-  \renewcommand*\monthFmt{\LARGE\color{darkgold}\ShakerLightFont}%
-  \renewcommand*\yearFmt{\LARGE\color{darkgold}\ShakerLightFont}%
+  \renewcommand*\monthFmt{\fontsize{19}{19}\color{darkgold}\AlegreyaSansLightFont\selectfont}%
+  \renewcommand*\yearFmt{\fontsize{19}{19}\color{darkgold}\AlegreyaSansLightFont\selectfont}%
   \renewcommand*\dayLetterColor{}%
-  \renewcommand*\dayLetterFmt{\tiny}%
-  \renewcommand*\dayTextFmt{\small\ShakerRegularFont}%
-  \renewcommand*\quoteFmt{\centering\ShakerLightFont\fontsize{11.5}{15}\selectfont}%
+  \renewcommand*\dayLetterFmt{\fontsize{9}{9}\selectfont}%
+  \renewcommand*\dayTextFmt{\fontsize{13}{13}\AlegreyaSansFont\selectfont}%
+  \renewcommand*\quoteFmt{\centering\AlegreyaSansLightFont\fontsize{11.5}{15}\selectfont}%
   \renewcommand*\headingFmt{\centering}%
   \renewcommand*\calendarFmt{\centering}%
-  \renewcommand*\eventsFmt{\setlength{\parindent}{0pt}\raggedright\fontsize{8}{11}\selectfont}%
+  \renewcommand*\eventsFmt{\setlength{\parindent}{0pt}\raggedright\fontsize{9}{11}\selectfont}%
   \setlength{\@t@calendar@minimumHeight}{90mm}%
   \setlength{\@t@calendar@hmargin}{50pt}%
   \setlength{\@t@calendar@verticalSpacing}{32mm + 5mm + 6.5mm}%
@@ -23,140 +46,107 @@
 
 % === Year Planner ===
 
-\tikzstyle{year planner portrait}=[
-  week list,
-  day xshift=16pt,
-  day yshift=14pt,
-  month text={\plannerPortraitMonthFmt\@tr@monthNumName{\pgfcalendarcurrentmonth}},
-  day text={\plannerPortraitDayFmt\%d-},
-  every month/.append style={%
-    anchor=south,
-    inner xsep=0pt,
-    yshift=5mm,
-    xshift=2.5mm,
-  },
-  day letter headings,
-  day heading/.style={gray, xshift=0pt, scale=0.85},
-  month label above centered,
-  every day/.style={anchor=mid},
-]
-
 \renewcommand\preYearPlannerPageHook{%
-  \renewcommand\monthMarkFmt{\fontsize{6}{6}\selectfont\color{textbody}}%
+  \setlength{\@wall@moonRaise}{-1.6pt}
+  \renewcommand\monthMarkFmt{\fontsize{7.5}{7.5}\selectfont\color{textbody}}%
+  \renewcommand\plannerPortraitMonthFmt{\fontsize{12}{12}\selectfont\color{darkgold}}%
+  \renewcommand\plannerPortraitDayFmt{\fontsize{10}{10}\selectfont\color{plannerdatenum}}%
   \renewcommand\symbolSeparator{,}%
   \setlength{\markNumberAbove}{-7pt}%
-  \setlength{\markNumberRight}{-6pt}%
+  \setlength{\markNumberRight}{-7pt}%
   \setlength{\markDayTextAbove}{-9pt}%
-  \setlength{\markDayTextRight}{-6pt}%
+  \setlength{\markDayTextRight}{-7pt}%
 }
 
-\newlength\calendarMinimumHeight
-\newlength\calendarSpacing
+\setlength{\plannerNotesSep}{8mm}
+\setlength{\plannerTitleSep}{7mm}
+\setlength{\plannerTopSkip}{-\baselineskip}
 
 % =============================== Quote positions ==============================
 
-% The Portuguese translation has more lines in some cases
-\ifthenelse{\equal{\@wall@calendarLanguage}{portuguese}}{
 \SetQuote[xOffset=0pt, yOffset=-15mm]{January}{\txt{January Quote}}
-\SetQuote[xOffset=0pt, yOffset=-20mm]{February}{\txt{February Quote}}
-\SetQuote[xOffset=0pt, yOffset=-20mm]{March}{\txt{March Quote}}
-\SetQuote[xOffset=0pt, yOffset=-20mm]{April}{\txt{April Quote}}
-\SetQuote[xOffset=0pt, yOffset=-20mm]{May}{\txt{May Quote}}
-\SetQuote[xOffset=0pt, yOffset=-15mm]{June}{\txt{June Quote}}
-\SetQuote[xOffset=0pt, yOffset=-15mm]{July}{\txt{July Quote}}
-\SetQuote[xOffset=0pt, yOffset=-15mm]{August}{\txt{August Quote}}
-\SetQuote[xOffset=0pt, yOffset=-20mm]{September}{\txt{September Quote}}
-\SetQuote[xOffset=0pt, yOffset=-15mm]{October}{\txt{October Quote}}
-\SetQuote[xOffset=0pt, yOffset=-20mm]{November}{\txt{November Quote}}
-\SetQuote[xOffset=0pt, yOffset=-20mm]{December}{\txt{December Quote}}
-}{
-\SetQuote[xOffset=0pt, yOffset=-20mm]{January}{\txt{January Quote}}
-\SetQuote[xOffset=0pt, yOffset=-20mm]{February}{\txt{February Quote}}
-\SetQuote[xOffset=0pt, yOffset=-20mm]{March}{\txt{March Quote}}
-\SetQuote[xOffset=0pt, yOffset=-20mm]{April}{\txt{April Quote}}
-\SetQuote[xOffset=0pt, yOffset=-20mm]{May}{\txt{May Quote}}
+\SetQuote[xOffset=0pt, yOffset=-15mm]{February}{\txt{February Quote}}
+\SetQuote[xOffset=0pt, yOffset=-15mm]{March}{\txt{March Quote}}
+\SetQuote[xOffset=0pt, yOffset=-15mm]{April}{\txt{April Quote}}
+\SetQuote[xOffset=0pt, yOffset=-15mm]{May}{\txt{May Quote}}
 \SetQuote[xOffset=0pt, yOffset=-15mm]{June}{\txt{June Quote}}
 \SetQuote[xOffset=0pt, yOffset=-15mm]{July}{\txt{July Quote}}
 \SetQuote[xOffset=0pt, yOffset=-15mm]{August}{\txt{August Quote}}
 \SetQuote[xOffset=0pt, yOffset=-15mm]{September}{\txt{September Quote}}
 \SetQuote[xOffset=0pt, yOffset=-15mm]{October}{\txt{October Quote}}
-\SetQuote[xOffset=0pt, yOffset=-20mm]{November}{\txt{November Quote}}
-\SetQuote[xOffset=0pt, yOffset=-20mm]{December}{\txt{December Quote}}
-}
+\SetQuote[xOffset=0pt, yOffset=-15mm]{November}{\txt{November Quote}}
+\SetQuote[xOffset=0pt, yOffset=-15mm]{December}{\txt{December Quote}}
 
 % =============================== January ======================================
 
-\SetPhoto[bleed=3mm, file={01-cittaviveka-lake}, thumbFile={01-cittaviveka-lake-thumb}, caption={\txt{January Caption}}, yOffset=-130mm]{January}
+\SetPhoto[bleed=3mm, file={01-January}, thumbFile={01-January}, caption={\txt{January Caption}}, yOffset=-130mm]{January}
 \SetCalendar[bg/.style={opacity=1}]{January}
 \SetEvents{January}{\calendarMarks}{\calendarText}
 
 % =============================== February =====================================
 
-\SetPhoto[bleed=3mm, file={02-thailand-wooden-floor}, thumbFile={02-thailand-wooden-floor-thumb}, caption={\txt{February Caption}}, yOffset=-130mm]{February}
+\SetPhoto[bleed=3mm, file={02-February}, thumbFile={02-February}, caption={\txt{February Caption}}, yOffset=-130mm]{February}
 \SetCalendar[bg/.style={opacity=1}]{February}
 \SetEvents{February}{\calendarMarks}{\calendarText}
 
 % =============================== March ========================================
 
-\SetPhoto[bleed=3mm, file={03-amaravati-brick-wall}, thumbFile={03-amaravati-brick-wall-thumb}, caption={\txt{March Caption}}, yOffset=-130mm]{March}
+\SetPhoto[bleed=3mm, file={03-March}, thumbFile={03-March}, caption={\txt{March Caption}}, yOffset=-130mm]{March}
 \SetCalendar[bg/.style={opacity=1}]{March}
 \SetEvents{March}{\calendarMarks}{\calendarText}
 
 % =============================== April ========================================
 
-\SetPhoto[bleed=3mm, file={04-thailand-river}, thumbFile={04-thailand-river-thumb}, caption={\txt{April Caption}}, yOffset=-130mm]{April}
+\SetPhoto[bleed=3mm, file={04-April}, thumbFile={04-April}, caption={\txt{April Caption}}, yOffset=-130mm]{April}
 \SetCalendar[bg/.style={opacity=1}]{April}
 \SetEvents{April}{\calendarMarks}{\calendarText}
 
 % =============================== May ==========================================
 
-\SetPhoto[bleed=3mm, file={05-italy-wooden-rafters}, thumbFile={05-italy-wooden-rafters-thumb}, caption={\txt{May Caption}}, yOffset=-130mm]{May}
+\SetPhoto[bleed=3mm, file={05-May}, thumbFile={05-May}, caption={\txt{May Caption}}, yOffset=-130mm]{May}
 \SetCalendar[bg/.style={opacity=1}]{May}
 \SetEvents{May}{\calendarMarks}{\calendarText}
 
 % =============================== June =========================================
 
-\SetPhoto[bleed=3mm, file={06-thailand-night}, thumbFile={06-thailand-night-thumb}, caption={\txt{June Caption}}, yOffset=-130mm]{June}
+\SetPhoto[bleed=3mm, file={06-June}, thumbFile={06-June}, caption={\txt{June Caption}}, yOffset=-130mm]{June}
 \SetCalendar[bg/.style={opacity=1}]{June}
 \SetEvents{June}{\calendarMarks}{\calendarText}
 
 % =============================== July =========================================
 
-\SetPhoto[bleed=3mm, file={07-amaravati-curtain}, thumbFile={07-amaravati-curtain-thumb}, caption={\txt{July Caption}}, yOffset=-130mm]{July}
+\SetPhoto[bleed=3mm, file={07-July}, thumbFile={07-July}, caption={\txt{July Caption}}, yOffset=-130mm]{July}
 \SetCalendar[bg/.style={opacity=1}]{July}
 \SetEvents{July}{\calendarMarks}{\calendarText}
 
 % =============================== August =======================================
 
-\SetPhoto[bleed=3mm, file={08-harnham-road}, thumbFile={08-harnham-road-thumb}, caption={\txt{August Caption}}, yOffset=-130mm]{August}
+\SetPhoto[bleed=3mm, file={08-August}, thumbFile={08-August}, caption={\txt{August Caption}}, yOffset=-130mm]{August}
 \SetCalendar[bg/.style={opacity=1}]{August}
 \SetEvents{August}{\calendarMarks}{\calendarText}
 
 % =============================== September ====================================
 
-\SetPhoto[bleed=3mm, file={09-birken-glossy-floor}, thumbFile={09-birken-glossy-floor-thumb}, caption={\txt{September Caption}}, yOffset=-130mm]{September}
+\SetPhoto[bleed=3mm, file={09-September}, thumbFile={09-September}, caption={\txt{September Caption}}, yOffset=-130mm]{September}
 \SetCalendar[bg/.style={opacity=1}]{September}
 \SetEvents{September}{\calendarMarks}{\calendarText}
 
 % =============================== October ======================================
 
-\SetPhoto[bleed=3mm, file={10-sewing}, thumbFile={10-sewing-thumb}, caption={\txt{October Caption}}, yOffset=-130mm]{October}
+\SetPhoto[bleed=3mm, file={10-October}, thumbFile={10-October}, caption={\txt{October Caption}}, yOffset=-130mm]{October}
 \SetCalendar[bg/.style={opacity=1}]{October}
 \SetEvents{October}{\calendarMarks}{\calendarText}
 
 % =============================== November =====================================
 
-\SetPhoto[bleed=3mm, file={11-amaravati-light-beam}, thumbFile={11-amaravati-light-beam-thumb}, caption={\txt{November Caption}}, yOffset=-130mm]{November}
+\SetPhoto[bleed=3mm, file={11-November}, thumbFile={11-November}, caption={\txt{November Caption}}, yOffset=-130mm]{November}
 \SetCalendar[bg/.style={opacity=1}]{November}
 \SetEvents{November}{\calendarMarks}{\calendarText}
 
 % =============================== December =====================================
 
-\SetPhoto[bleed=3mm, file={12-harnham-lake}, thumbFile={12-harnham-lake-thumb}, caption={\txt{December Caption}}, yOffset=-130mm]{December}
+\SetPhoto[bleed=3mm, file={12-December}, thumbFile={12-December}, caption={\txt{December Caption}}, yOffset=-130mm]{December}
 \SetCalendar[bg/.style={opacity=1}]{December}
 \SetEvents{December}{\calendarMarks}{\calendarText}
 
-% === Settings Hook ============================================================
-
-\SettingsHook
 

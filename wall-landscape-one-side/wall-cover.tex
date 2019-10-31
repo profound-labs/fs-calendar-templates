@@ -4,9 +4,9 @@
 
 \AddToShipoutPictureFG*{\put(\LenToUnit{-3mm},\LenToUnit{-3mm}){%
 \ifvarnishmask
-\includegraphics[keepaspectratio, width=\coverWidth]{cover-gfx-varnishmask}
+\includegraphics[keepaspectratio, width=\coverWidth]{cover-wall-bg-varnishmask}
 \else
-\includegraphics[keepaspectratio, width=\coverWidth]{cover-gfx}
+\includegraphics[keepaspectratio, width=\coverWidth]{cover-wall-bg}
 \fi
 }}
 
@@ -18,12 +18,12 @@
 \setlength{\parskip}{0pt}%
 \setlength{\parindent}{0pt}%
 \centering
-\ShakerLightFont
+\AlegreyaSansLightFont
 \resizebox{108mm}{!}{\color{white}\xCalendarTitle}\\[3mm]
 \resizebox{108mm}{!}{\color{white}%
 \CalendarYear\space
 % U+2638 wheel of dharma
-\raisebox{0.25\baselineskip - 2pt}{\DejavuSans\fontsize{4}{4}\selectfont ☸}\space
+\raisebox{0.25\baselineskip - 2pt}{\DejavuSans\fontsize{4}{4}\selectfont \char"2638}\space
 \CalendarAltYear}
 \par
 \vspace*{35mm}

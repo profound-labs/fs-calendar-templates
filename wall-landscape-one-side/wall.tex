@@ -1,14 +1,14 @@
 \documentclass[
-  year = 2019,
-  altyear = 2562,
+  year = 2021,
+  altyear = 2564,
   language = english,
-  translationsInputFile = text-english.tex,
+  translationsInputFile = ../text-english.tex,
   translationsAutoload = false,
-  eventsCsv = ./data/events.csv,
-  markDefaultsCsv = ./data/mark_defaults.csv,
-  imageFolder = ./images/jpg/,
-  %imageFolder = ./images/pdf-92dpi/,% For the desktop download version
-  choralOctavoPaper,% 6.75in x 10.5in
+  eventsCsv = ../data/events.csv,
+  markDefaultsCsv = ../data/mark_defaults.csv,
+  imageFolder = ../images/jpg/,
+  %imageFolder = ../images/jpg-92dpi/,% For the desktop download version
+  choralOctavoPaper,% 6.75in x 10.5in = 171.45mm x 266.7mm
   hMargin = 17mm,
   topMargin = 20.5mm,
   bottomMargin = 10mm,
@@ -18,7 +18,15 @@
 
 \usepackage{wall-local}
 
+\makeatletter
+\graphicspath{{./},{../},{../images/},{\@wall@imageFolder}}
+\makeatother
+
 \begin{document}
+
+\AddToShipoutPictureFG{\put(0,\LenToUnit{\calPaperHeight - 10mm}){%
+\includegraphics[keepaspectratio, width=6.75in]{wire-holes}%
+}}
 
 % === Cover ===========================================================
 

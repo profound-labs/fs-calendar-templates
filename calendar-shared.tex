@@ -14,28 +14,48 @@
 % NOTE: input path is relative to main document, such as wall.tex, which is in
 % the template folders now.
 \input{../translation-keys.tex}
+\input{../address-macros.tex}
 
 \LoadTranslations
 
 % === Fonts ===
 
 \usepackage{fontspec}
-\defaultfontfeatures{Ligatures={TeX}}
+\defaultfontfeatures{ Ligatures={TeX}, Path = {../fonts/}, }
+
 \setmainfont[
-  ItalicFont = Shaker Pali Italic,
-  BoldFont = Shaker 2 Bold,
-]{Shaker Pali Regular}
+  SmallCapsFont = AlegreyaSansSC-Regular.otf,
+  SmallCapsFeatures= { Ligatures = TeX, Scale = 0.93, LetterSpace = 0.2 },
+  ItalicFont = Alegreya-Italic.otf,
+  BoldFont = AlegreyaSans-Bold.otf,
+  BoldItalicFont = Alegreya-BoldItalic.otf,
+]{AlegreyaSans-Regular.otf}
 
-\newfontfamily\ShakerLightFont[
-  ItalicFont = Shaker 2 Light Italic,
-]{Shaker 2 Light}
+\newfontfamily\AlegreyaSansFont[
+  SmallCapsFont = AlegreyaSansSC-Regular.otf,
+  SmallCapsFeatures= { Ligatures = TeX, Scale = 0.93, LetterSpace = 0.2 },
+  ItalicFont = Alegreya-Italic.otf,
+  BoldFont = AlegreyaSans-Bold.otf,
+  BoldItalicFont = Alegreya-BoldItalic.otf,
+]{AlegreyaSans-Regular.otf}
 
-\newfontfamily\ShakerRegularFont[
-  ItalicFont = Shaker Pali Italic,
-  BoldFont = Shaker 2 Bold,
-]{Shaker Pali Regular}
+\newfontfamily\AlegreyaSansScFont[
+  Scale = 0.93,
+  BoldFont = AlegreyaSansSc-Bold.otf,
+]{AlegreyaSansSC-Regular.otf}
 
-\newfontfamily\DejavuSans{DejaVu Sans}
+\newfontfamily\AlegreyaSansLightFont[
+  SmallCapsFont = AlegreyaSansSC-Light.otf,
+  SmallCapsFeatures= { Ligatures = TeX, Scale = 0.93, LetterSpace = 0.2 },
+  ItalicFont = Alegreya-Italic.otf,
+  BoldFont = AlegreyaSans-Bold.otf,
+  BoldItalicFont = Alegreya-BoldItalic.otf,
+]{AlegreyaSans-Light.otf}
+
+\newfontfamily\DejavuSans{DejaVuSans.ttf}
+
+% NOTE: Will apply to Medium as bold beacuse it declared as BoldFont in this family
+\SetTracking[spacing={400,100,}]{encoding=*, family={AlegreyaSansSC-Regular.otf}}{20}
 
 % === Packages ===
 
@@ -93,7 +113,7 @@
 
 % === Year Planner Page ===
 
-\newcommand\plannerYearFmt{\fontsize{26}{26}\selectfont\color{orangegold}}
+\newcommand\plannerYearFmt{\fontsize{28}{28}\selectfont\color{orangegold}}
 
 \newlength\plannerNotesSep
 \newlength\plannerTitleSep
@@ -110,18 +130,18 @@
 
 \tikzstyle{year planner portrait}=[
   week list,
-  day xshift=16pt,
-  day yshift=14pt,
+  day xshift=17pt,
+  day yshift=15pt,
   month text={\plannerPortraitMonthFmt\@tr@monthNumName{\pgfcalendarcurrentmonth}},
   day text={\plannerPortraitDayFmt\%d-},
   every month/.append style={%
     anchor=south,
     inner xsep=0pt,
-    yshift=5mm,
+    yshift=6mm,
     xshift=2.5mm,
   },
   day letter headings,
-  day heading/.style={gray, xshift=0pt, scale=0.85},
+  day heading/.style={gray, xshift=0pt, scale=0.7},
   month label above centered,
   every day/.style={anchor=mid},
 ]
