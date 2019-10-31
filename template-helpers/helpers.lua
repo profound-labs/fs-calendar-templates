@@ -88,10 +88,10 @@ function monthMarksDayTextAsCornerMarks(monthName, filterPred, eventsCsv)
   local do_test_alignment = false
 
   local spacing = {
-    full   = "-8.35pt and 5pt",
-    waning = "-8.2pt and 5.15pt",
-    new    = "-8.2pt and 5.15pt",
-    waxing = "-8.2pt and 5.15pt"
+    full   = "-10.35pt and 7pt",
+    waning = "-10.2pt and 7.15pt",
+    new    = "-10.2pt and 7.15pt",
+    waxing = "-10.2pt and 7.15pt"
   }
 
   local command = {

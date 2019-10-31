@@ -31,7 +31,7 @@
   BoldItalicFont = Alegreya-BoldItalic.otf,
 ]{AlegreyaSans-Regular.otf}
 
-\newfontfamily\alegreyaSansFont[
+\newfontfamily\AlegreyaSansFont[
   SmallCapsFont = AlegreyaSansSC-Regular.otf,
   SmallCapsFeatures= { Ligatures = TeX, Scale = 0.93, LetterSpace = 0.2 },
   ItalicFont = Alegreya-Italic.otf,
@@ -39,12 +39,12 @@
   BoldItalicFont = Alegreya-BoldItalic.otf,
 ]{AlegreyaSans-Regular.otf}
 
-\newfontfamily\alegreyaSansScFont[
+\newfontfamily\AlegreyaSansScFont[
   Scale = 0.93,
   BoldFont = AlegreyaSansSc-Bold.otf,
 ]{AlegreyaSansSC-Regular.otf}
 
-\newfontfamily\alegreyaSansLightFont[
+\newfontfamily\AlegreyaSansLightFont[
   SmallCapsFont = AlegreyaSansSC-Light.otf,
   SmallCapsFeatures= { Ligatures = TeX, Scale = 0.93, LetterSpace = 0.2 },
   ItalicFont = Alegreya-Italic.otf,
@@ -113,7 +113,7 @@
 
 % === Year Planner Page ===
 
-\newcommand\plannerYearFmt{\fontsize{26}{26}\selectfont\color{orangegold}}
+\newcommand\plannerYearFmt{\fontsize{28}{28}\selectfont\color{orangegold}}
 
 \newlength\plannerNotesSep
 \newlength\plannerTitleSep
@@ -130,18 +130,18 @@
 
 \tikzstyle{year planner portrait}=[
   week list,
-  day xshift=16pt,
-  day yshift=14pt,
+  day xshift=17pt,
+  day yshift=15pt,
   month text={\plannerPortraitMonthFmt\@tr@monthNumName{\pgfcalendarcurrentmonth}},
   day text={\plannerPortraitDayFmt\%d-},
   every month/.append style={%
     anchor=south,
     inner xsep=0pt,
-    yshift=5mm,
+    yshift=6mm,
     xshift=2.5mm,
   },
   day letter headings,
-  day heading/.style={gray, xshift=0pt, scale=0.85},
+  day heading/.style={gray, xshift=0pt, scale=0.7},
   month label above centered,
   every day/.style={anchor=mid},
 ]

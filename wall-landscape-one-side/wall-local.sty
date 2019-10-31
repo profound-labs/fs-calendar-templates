@@ -11,7 +11,7 @@
 \colorlet{mooncolor}{darkgold}
 \colorlet{sunday}{black}
 
-\renewcommand*\quoteRef[1]{\itshape\fontsize{12}{16}\selectfont #1}
+\renewcommand*\quoteRef[1]{\vspace*{8pt}{\color[gray]{0.25}\itshape\fontsize{9}{14}\selectfont #1}}
 
 \renewcommand{\FrontmatterFmt}{%
   \fontsize{9}{14}\selectfont%
@@ -19,23 +19,26 @@
   \vspace*{-4\baselineskip}%
 }
 
-% TODO is this needed from the largecal? (2020 style)
+\renewcommand{\calendarMarks}{%
+  \parseMonthMarksDayTextAsCornerMarks%
+  \parseMonthMarksNote%
+}
 
-%\renewcommand{\calendarMarks}{%
-%  \parseMonthMarksDayTextAsCornerMarks%
-%  \parseMonthMarksNote%
-%}
+\renewcommand*{\tikzMonthCalendar@smallLandscape}[1]{%
+  \pgfkeys{/Events/\monthName{#1}/marks/.get=\@eventmarks}%
+  \calendar (cal#1) [aldebaran, dates=\CalendarYear-#1-01 to \CalendarYear-#1-last] \@eventmarks;%
+}
 
 \renewcommand\smallLandscapeFmt{%
-  \renewcommand*\monthFmt{\LARGE\color{darkgold}\AlegreyaSansLightFont}%
-  \renewcommand*\yearFmt{\LARGE\color{darkgold}\AlegreyaSansLightFont}%
+  \renewcommand*\monthFmt{\fontsize{19}{19}\color{darkgold}\AlegreyaSansLightFont\selectfont}%
+  \renewcommand*\yearFmt{\fontsize{19}{19}\color{darkgold}\AlegreyaSansLightFont\selectfont}%
   \renewcommand*\dayLetterColor{}%
-  \renewcommand*\dayLetterFmt{\tiny}%
-  \renewcommand*\dayTextFmt{\small\AlegreyaSansFont}%
+  \renewcommand*\dayLetterFmt{\fontsize{9}{9}\selectfont}%
+  \renewcommand*\dayTextFmt{\fontsize{13}{13}\AlegreyaSansFont\selectfont}%
   \renewcommand*\quoteFmt{\centering\AlegreyaSansLightFont\fontsize{11.5}{15}\selectfont}%
   \renewcommand*\headingFmt{\centering}%
   \renewcommand*\calendarFmt{\centering}%
-  \renewcommand*\eventsFmt{\setlength{\parindent}{0pt}\raggedright\fontsize{8}{11}\selectfont}%
+  \renewcommand*\eventsFmt{\setlength{\parindent}{0pt}\raggedright\fontsize{9}{11}\selectfont}%
   \setlength{\@t@calendar@minimumHeight}{90mm}%
   \setlength{\@t@calendar@hmargin}{50pt}%
   \setlength{\@t@calendar@verticalSpacing}{32mm + 5mm + 6.5mm}%
@@ -44,35 +47,35 @@
 % === Year Planner ===
 
 \renewcommand\preYearPlannerPageHook{%
-  \renewcommand\monthMarkFmt{\fontsize{6}{6}\selectfont\color{textbody}}%
+  \setlength{\@wall@moonRaise}{-1.6pt}
+  \renewcommand\monthMarkFmt{\fontsize{7.5}{7.5}\selectfont\color{textbody}}%
+  \renewcommand\plannerPortraitMonthFmt{\fontsize{12}{12}\selectfont\color{darkgold}}%
+  \renewcommand\plannerPortraitDayFmt{\fontsize{10}{10}\selectfont\color{plannerdatenum}}%
   \renewcommand\symbolSeparator{,}%
   \setlength{\markNumberAbove}{-7pt}%
-  \setlength{\markNumberRight}{-6pt}%
+  \setlength{\markNumberRight}{-7pt}%
   \setlength{\markDayTextAbove}{-9pt}%
-  \setlength{\markDayTextRight}{-6pt}%
+  \setlength{\markDayTextRight}{-7pt}%
 }
 
 \setlength{\plannerNotesSep}{8mm}
 \setlength{\plannerTitleSep}{7mm}
 \setlength{\plannerTopSkip}{-\baselineskip}
 
-%\newlength\calendarMinimumHeight
-%\newlength\calendarSpacing
-
 % =============================== Quote positions ==============================
 
-\SetQuote[xOffset=0pt, yOffset=0pt]{January}{\txt{January Quote}}
-\SetQuote[xOffset=0pt, yOffset=0pt]{February}{\txt{February Quote}}
-\SetQuote[xOffset=0pt, yOffset=0pt]{March}{\txt{March Quote}}
-\SetQuote[xOffset=0pt, yOffset=0pt]{April}{\txt{April Quote}}
-\SetQuote[xOffset=0pt, yOffset=0pt]{May}{\txt{May Quote}}
-\SetQuote[xOffset=0pt, yOffset=0pt]{June}{\txt{June Quote}}
-\SetQuote[xOffset=0pt, yOffset=0pt]{July}{\txt{July Quote}}
-\SetQuote[xOffset=0pt, yOffset=0pt]{August}{\txt{August Quote}}
-\SetQuote[xOffset=0pt, yOffset=0pt]{September}{\txt{September Quote}}
-\SetQuote[xOffset=0pt, yOffset=0pt]{October}{\txt{October Quote}}
-\SetQuote[xOffset=0pt, yOffset=0pt]{November}{\txt{November Quote}}
-\SetQuote[xOffset=0pt, yOffset=0pt]{December}{\txt{December Quote}}
+\SetQuote[xOffset=0pt, yOffset=-15mm]{January}{\txt{January Quote}}
+\SetQuote[xOffset=0pt, yOffset=-15mm]{February}{\txt{February Quote}}
+\SetQuote[xOffset=0pt, yOffset=-15mm]{March}{\txt{March Quote}}
+\SetQuote[xOffset=0pt, yOffset=-15mm]{April}{\txt{April Quote}}
+\SetQuote[xOffset=0pt, yOffset=-15mm]{May}{\txt{May Quote}}
+\SetQuote[xOffset=0pt, yOffset=-15mm]{June}{\txt{June Quote}}
+\SetQuote[xOffset=0pt, yOffset=-15mm]{July}{\txt{July Quote}}
+\SetQuote[xOffset=0pt, yOffset=-15mm]{August}{\txt{August Quote}}
+\SetQuote[xOffset=0pt, yOffset=-15mm]{September}{\txt{September Quote}}
+\SetQuote[xOffset=0pt, yOffset=-15mm]{October}{\txt{October Quote}}
+\SetQuote[xOffset=0pt, yOffset=-15mm]{November}{\txt{November Quote}}
+\SetQuote[xOffset=0pt, yOffset=-15mm]{December}{\txt{December Quote}}
 
 % =============================== January ======================================
 
