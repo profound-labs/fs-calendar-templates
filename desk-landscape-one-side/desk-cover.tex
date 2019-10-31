@@ -3,27 +3,31 @@
 \mbox{}
 
 \AddToShipoutPictureFG*{\put(\LenToUnit{-3mm},\LenToUnit{-3mm}){%
-\colorbox{coverbgcolor}{%
-\begin{minipage}[b][\coverHeight][t]{\coverWidth}
-\setlength{\parskip}{0pt}
-\setlength{\parindent}{0pt}
+\ifvarnishmask
+\includegraphics[keepaspectratio, width=\coverWidth]{cover-wall-bg-varnishmask}
+\else
+\includegraphics[keepaspectratio, width=\coverWidth]{cover-wall-bg}
+\fi
+}}
+
 \ifvarnishmask\relax
 \else
+
+\AddToShipoutPictureFG*{\put(\LenToUnit{-3mm},\LenToUnit{-3mm}){%
+\begin{minipage}[b]{\coverWidth}%
+\setlength{\parskip}{0pt}%
+\setlength{\parindent}{0pt}%
 \centering
-\includegraphics[keepaspectratio, width=\coverWidth]{Cover.pdf}
-
-\vfill
-
-\ShakerLightFont
-\resizebox{80mm}{!}{\color{black!80}\xCalendarTitle}\\[3mm]
-\resizebox{80mm}{!}{\color{gold}\CalendarYear{}
-\raisebox{1pt}{$\cdot$}
+\AlegreyaSansLightFont
+\resizebox{80mm}{!}{\color{white}\xCalendarTitle}\\[3mm]
+\resizebox{80mm}{!}{\color{white}%
+\CalendarYear\space
+% U+2638 wheel of dharma
+\raisebox{0.25\baselineskip - 2pt}{\DejavuSans\fontsize{4}{4}\selectfont \char"2638}\space
 \CalendarAltYear}
+\par
+\vspace*{15mm}
+\end{minipage}
+}}
 
-\vfill
-
-\vspace{-\baselineskip}
 \fi
-\mbox{}
-\end{minipage}%
-}}}

@@ -24,21 +24,21 @@
 }
 
 \newcommand\smallDeskLandscapeFmt{%
-  \renewcommand*\monthFmt{\LARGE}%
-  \renewcommand*\yearFmt{\LARGE}%
+  \renewcommand*\monthFmt{\fontsize{19}{19}\selectfont}%
+  \renewcommand*\yearFmt{\fontsize{19}{19}\selectfont}%
   \renewcommand*\dayLetterColor{}%
-  \renewcommand*\dayLetterFmt{\fontsize{10}{10}\selectfont\color[gray]{0.5}}%
-  \renewcommand*\dayTextFmt{\fontsize{15}{15}\selectfont}%
-  \renewcommand*\quoteFmt{\centering\fontsize{11}{16}\selectfont}%
+  \renewcommand*\dayLetterFmt{\fontsize{9}{9}\selectfont\color[gray]{0.5}}%
+  \renewcommand*\dayTextFmt{\fontsize{16}{16}\selectfont}%
+  \renewcommand*\quoteFmt{\centering\fontsize{11}{15}\selectfont}%
   \renewcommand*\headingFmt{\centering\color{darkgold}}%
   \renewcommand*\calendarFmt{\centering}%
   \renewcommand*\eventsFmt{\setlength{\parindent}{0pt}\raggedright\fontsize{8}{10.5}\selectfont}%
-  \setlength{\@t@calendar@minimumHeight}{80mm}%
+  \setlength{\@t@calendar@minimumHeight}{77mm}%
   \setlength{\@t@calendar@hmargin}{20pt}%
   % 5mm: day headings
   % 20mm: events
   % 11.5mm: white space
-  \setlength{\@t@calendar@verticalSpacing}{20mm + 5mm + 11.5mm}%
+  \setlength{\@t@calendar@verticalSpacing}{20mm + 5mm + 14.5mm}%
 }
 
 \newcommand\@wall@smallDeskLandscapeLayout[2][]{%
@@ -155,6 +155,7 @@
 ] {%
 \placeholder[fill=events-frame]{}{%
 \begin{minipage}{\@t@minipageWidth + 5pt}% 5pt positioning fix
+\setlength{\@wall@moonRaise}{-2.1pt}%
 \eventsFmt
 \pgfkeys{/Events/#2/text/.get=\@val}%
 \@val%
@@ -205,6 +206,7 @@
 ]
 
 \newcommand*{\tikzMonthCalendar@smallDeskLandscape}[1]{%
+\setlength{\@wall@moonRaise}{0pt}%
 \pgfkeys{/Events/\monthName{#1}/marks/.get=\@eventmarks}%
 \calendar (cal#1) [rigel-nogrid, dates=\CalendarYear-#1-01 to \CalendarYear-#1-last] \@eventmarks;%
 }
