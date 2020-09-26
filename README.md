@@ -39,11 +39,11 @@ First commit:
 git init
 git annex init "2020 calendar"
 
-git annex add images/jpg images/pdf --include-dotfiles
-git commit -m "images"
+git annex add images
+git commit -m images
 
 git add -A
-git commit -m "kickstart"
+git commit -m first
 ```
 
 Crop the photos from the originals and replace the placeholders:
