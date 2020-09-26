@@ -13,8 +13,8 @@ Using the [wallcalendar](https://github.com/profound-labs/wallcalendar) document
 Clone the template and calculate the moonday and event data in CSV for the year.
 
 ```
-git clone https://github.com/profound-labs/fs-calendar-template.git ./2020
-cd 2020
+git clone https://github.com/profound-labs/fs-calendar-template.git ./2020_main
+cd 2020_main
 rm .git -rf
 make calculate-data YEAR=2020
 ```
