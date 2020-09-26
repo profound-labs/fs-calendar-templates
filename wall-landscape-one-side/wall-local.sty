@@ -7,10 +7,10 @@
 
 \luadirect{
 require("../template-helpers/helpers.lua")
-setDateTexts(tonumber(\CalendarYear), \luastring{\@wall@eventsCsv})
+setDateTexts(tonumber(\CalendarYear), \luastring{\@wall@calendarLanguage}, \luastring{\@wall@eventsCsv})
 }
 
-\renewcommand*\quoteRef[1]{\vspace*{8pt}{\color[gray]{0.25}\itshape\fontsize{9}{14}\selectfont #1}}
+\renewcommand*\quoteRef[1]{\vspace*{8pt}{\EBGaramondFont\color[gray]{0.6}\itshape\fontsize{9}{14}\selectfont #1}}
 
 \renewcommand{\FrontmatterFmt}{%
   \fontsize{9}{14}\selectfont%
@@ -24,15 +24,18 @@ setDateTexts(tonumber(\CalendarYear), \luastring{\@wall@eventsCsv})
 }
 
 \renewcommand*{\tikzMonthCalendar@smallLandscape}[1]{%
+  \setlength{\@wall@moonRaise}{1pt}%
   \pgfkeys{/Events/\monthName{#1}/marks/.get=\@eventmarks}%
   \calendar (cal#1) [aldebaran, dates=\CalendarYear-#1-01 to \CalendarYear-#1-last] \@eventmarks;%
 }
 
 \renewcommand\smallLandscapeFmt{%
+  % Will affect the moons in the notes
+  \setlength{\@wall@moonRaise}{-1.5pt}%
   \renewcommand*\monthFmt{\fontsize{19}{19}\color{darkgold}\AlegreyaSansLightFont\selectfont}%
   \renewcommand*\yearFmt{\fontsize{19}{19}\color{darkgold}\AlegreyaSansLightFont\selectfont}%
   \renewcommand*\dayLetterColor{}%
-  \renewcommand*\dayLetterFmt{\fontsize{9}{9}\selectfont}%
+  \renewcommand*\dayLetterFmt{\fontsize{9}{9}\selectfont\color[gray]{0.6}}%
   \renewcommand*\dayTextFmt{\fontsize{13}{13}\AlegreyaSansFont\selectfont}%
   \renewcommand*\quoteFmt{\centering\AlegreyaSansLightFont\fontsize{11.5}{15}\selectfont}%
   \renewcommand*\headingFmt{\centering}%
@@ -44,6 +47,13 @@ setDateTexts(tonumber(\CalendarYear), \luastring{\@wall@eventsCsv})
 }
 
 % =============================== Quote positions ==============================
+
+% The translation has more lines in some cases and needs different positioning
+
+% \ifthenelse{\equal{\@wall@calendarLanguage}{english}}{
+%   \SetQuote[xOffset=0pt, yOffset=-15.0mm]{January}{\txt{January Quote}}
+% ...
+% }{}
 
 \SetQuote[xOffset=0pt, yOffset=-15mm]{January}{\txt{January Quote}}
 \SetQuote[xOffset=0pt, yOffset=-15mm]{February}{\txt{February Quote}}

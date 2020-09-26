@@ -4,6 +4,12 @@ LATEX_OPTS=-interaction=nonstopmode -halt-on-error
 none:
 	@echo "huh?"
 
+wall:
+	make -B wall-landscape-one-side
+
+desk:
+	make -B desk-landscape-one-side
+
 wall-portrait-one-side:
 	cd wall-portrait-one-side && $(LATEX) $(LATEX_OPTS) wall.tex
 

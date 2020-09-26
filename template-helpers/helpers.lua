@@ -31,7 +31,7 @@ function eventFmtNotes(idx, max_idx, event, event_date, mark)
   end
 end
 
-function setDateTexts(yearNum, eventsCsv)
+function setDateTexts(yearNum, language, eventsCsv)
   local names = {"Magha", "Vesakha", "Asalha", "Pavarana"}
 
   for k,v in pairs(names) do
@@ -39,7 +39,11 @@ function setDateTexts(yearNum, eventsCsv)
     local event = eventsInYear(loadCsv(eventsCsv), yearNum, pred)[1]
     if ok(event) then
       local d = date(event.date)
-      tsp(string.format("\\renewcommand\\xDate".. v .."{\\x%s\\ %s}", d:fmt("%B"), d:getday()))
+      if language == "portuguese" then
+        tsp(string.format("\\renewcommand\\xDate".. v .."{%s de \\x%s}", d:getday(), d:fmt("%B")))
+      else
+        tsp(string.format("\\renewcommand\\xDate".. v .."{\\x%s\\ %s}", d:fmt("%B"), d:getday()))
+      end
     end
   end
 

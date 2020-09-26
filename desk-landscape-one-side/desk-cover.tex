@@ -4,9 +4,9 @@
 
 \AddToShipoutPictureFG*{\put(\LenToUnit{-3mm},\LenToUnit{-3mm}){%
 \ifvarnishmask
-\includegraphics[keepaspectratio, width=\coverWidth]{cover-wall-bg-varnishmask}
+\includegraphics[keepaspectratio, width=\coverWidth]{cover-desk-bg-varnishmask}
 \else
-\includegraphics[keepaspectratio, width=\coverWidth]{cover-wall-bg}
+\includegraphics[keepaspectratio, width=\coverWidth]{cover-desk-bg}
 \fi
 }}
 
@@ -14,20 +14,26 @@
 \else
 
 \AddToShipoutPictureFG*{\put(\LenToUnit{-3mm},\LenToUnit{-3mm}){%
-\begin{minipage}[b]{\coverWidth}%
+\begin{minipage}[b][70mm][t]{\coverWidth}%
 \setlength{\parskip}{0pt}%
 \setlength{\parindent}{0pt}%
 \centering
 \AlegreyaSansLightFont
+
+\mbox{}\vfill
+
 \resizebox{80mm}{!}{\color{white}\xCalendarTitle}\\[3mm]
 \resizebox{80mm}{!}{\color{white}%
 \CalendarYear\space
-% U+2638 wheel of dharma
-\raisebox{0.25\baselineskip - 2pt}{\DejavuSans\fontsize{4}{4}\selectfont \char"2638}\space
+\textbullet\space
 \CalendarAltYear}
 \par
-\vspace*{15mm}
-\end{minipage}
+
+\vfill
+
+\vspace*{3mm}%
+\mbox{}%
+\end{minipage}%
 }}
 
 \fi

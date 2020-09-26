@@ -18,7 +18,7 @@
 
 \LoadTranslations
 
-\graphicspath{{./},{../},{../images/},{\@wall@imageFolder}}
+\graphicspath{{./},{../},{../images/},{../images/jpg_thumbs/},{\@wall@imageFolder}}
 
 \definecolor{gridcolor}{gray}{0.85}
 \colorlet{mooncolor}{darkgold}
@@ -35,7 +35,7 @@
   SmallCapsFeatures= { Ligatures = TeX, Scale = 0.93, LetterSpace = 0.2 },
   ItalicFont = Alegreya-Italic.otf,
   BoldFont = AlegreyaSans-Bold.otf,
-  BoldItalicFont = Alegreya-BoldItalic.otf,
+  BoldItalicFont = AlegreyaSans-BoldItalic.otf,
 ]{AlegreyaSans-Regular.otf}
 
 \newfontfamily\AlegreyaSansFont[
@@ -43,7 +43,7 @@
   SmallCapsFeatures= { Ligatures = TeX, Scale = 0.93, LetterSpace = 0.2 },
   ItalicFont = Alegreya-Italic.otf,
   BoldFont = AlegreyaSans-Bold.otf,
-  BoldItalicFont = Alegreya-BoldItalic.otf,
+  BoldItalicFont = AlegreyaSans-BoldItalic.otf,
 ]{AlegreyaSans-Regular.otf}
 
 \newfontfamily\AlegreyaSansScFont[
@@ -56,10 +56,14 @@
   SmallCapsFeatures= { Ligatures = TeX, Scale = 0.93, LetterSpace = 0.2 },
   ItalicFont = Alegreya-Italic.otf,
   BoldFont = AlegreyaSans-Bold.otf,
-  BoldItalicFont = Alegreya-BoldItalic.otf,
+  BoldItalicFont = AlegreyaSans-BoldItalic.otf,
 ]{AlegreyaSans-Light.otf}
 
 \newfontfamily\DejavuSans{DejaVuSans.ttf}
+
+\newfontfamily\EBGaramondFont[
+  ItalicFont = EBGaramond08-Italic.otf,
+]{EBGaramond08-Regular.otf}
 
 % NOTE: Will apply to Medium as bold beacuse it declared as BoldFont in this family
 \SetTracking[spacing={400,100,}]{encoding=*, family={AlegreyaSansSC-Regular.otf}}{20}

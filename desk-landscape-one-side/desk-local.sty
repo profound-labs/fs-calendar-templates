@@ -7,12 +7,12 @@
 
 \luadirect{
 require("../template-helpers/helpers.lua")
-setDateTexts(tonumber(\CalendarYear), \luastring{\@wall@eventsCsv})
+setDateTexts(tonumber(\CalendarYear), \luastring{\@wall@calendarLanguage}, \luastring{\@wall@eventsCsv})
 }
 
 \usepackage{desk-landscape-layout}
 
-\renewcommand*\quoteRef[1]{\vspace*{4pt}{\color[gray]{0.25}\itshape\fontsize{9}{14}\selectfont #1}}
+\renewcommand*\quoteRef[1]{\vspace*{4pt}{\EBGaramondFont\color[gray]{0.6}\itshape\fontsize{9}{14}\selectfont #1}}
 
 \renewcommand{\FrontmatterFmt}{%
   \vspace*{-4\baselineskip}%

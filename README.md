@@ -140,7 +140,17 @@ Three-side bleed resolution: 1.1598 = 2087px x 1800px
 
 Three-side bleed resolution: 1.3342 = 2400px x 1800px
 
-Two-side bleed resolution: 1.2675 = 2028px x 1600px
+(? desk) Two-side bleed resolution: 1.2675 = 2028px x 1600px
+
+Two-side bleed wall resolution: 1.47875 = 2366px x 1600px
+
+(Image is 177.450mm x 120.000mm)
+
+Desk resolution: 1.3369 = 1605px x 1200px
+
+(Image is 123mm x 92mm)
+
+123/92 = 1.33695652174
 
 Photo width: 171.45mm + 2*3mm bleed = 177.45mm
 
