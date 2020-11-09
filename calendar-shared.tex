@@ -157,6 +157,7 @@
   \setlength{\plannerTopSkip}{-13pt}
 \else
   \renewcommand\preYearPlannerPageHook{%
+    \enlargethispage*{\baselineskip}%
     \setlength{\@wall@moonRaise}{-1.7pt}%
     \renewcommand\plannerYearFmt{\fontsize{22}{22}\selectfont\color{orangegold}}%
     \renewcommand\monthMarkFmt{\fontsize{7}{7}\selectfont\color{textbody}}%
@@ -168,9 +169,9 @@
     \setlength{\markDayTextAbove}{-7.5pt}%
     \setlength{\markDayTextRight}{-5pt}%
   }
-  \setlength{\plannerNotesSep}{4mm}
+  \setlength{\plannerNotesSep}{2mm}
   \setlength{\plannerTitleSep}{3mm}
-  \setlength{\plannerTopSkip}{-40pt}
+  \setlength{\plannerTopSkip}{-45pt}
 \fi
 
 \ifwall
