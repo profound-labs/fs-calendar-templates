@@ -1,10 +1,13 @@
 \ProvidesPackage{wall-local}
 
+\newif\ifwall
+\walltrue
+
 \input{../calendar-shared.tex}
 
 \luadirect{
 require("../template-helpers/helpers.lua")
-setDateTexts(tonumber(\CalendarYear), \luastring{\@wall@eventsCsv})
+setDateTexts(tonumber(\CalendarYear), \luastring{\@wall@calendarLanguage}, \luastring{\@wall@eventsCsv})
 }
 
 \renewcommand*\quoteRef[1]{\vspace*{8pt}\itshape\fontsize{9}{14}\selectfont #1}
@@ -15,7 +18,7 @@ setDateTexts(tonumber(\CalendarYear), \luastring{\@wall@eventsCsv})
   \renewcommand*\dayLetterColor{}%
   \renewcommand*\dayLetterFmt{\tiny}%
   \renewcommand*\dayTextFmt{\small}%
-  \renewcommand*\quoteFmt{\ShakerLightFont\fontsize{17}{22}\selectfont}%
+  \renewcommand*\quoteFmt{\AlegreyaSansLightFont\fontsize{17}{22}\selectfont}%
   \renewcommand*\headingFmt{\centering}%
   \renewcommand*\calendarFmt{\centering}%
   \renewcommand*\eventsFmt{\setlength{\parindent}{0pt}\raggedleft\footnotesize}%
@@ -36,7 +39,7 @@ setDateTexts(tonumber(\CalendarYear), \luastring{\@wall@eventsCsv})
 
 \SetQuote[xOffset=0pt, yOffset=-140mm]{January}{\txt{January Quote}}
 
-\SetPhoto[bleed=3mm, file={January}, thumbFile={}, caption={\txt{January Caption}}]{January}
+\SetPhoto[bleed=3mm, file={01-January}, thumbFile={01-January}, caption={\txt{January Caption}}]{January}
 \SetCalendar[bg/.style={opacity=0.8}]{January}
 \SetEvents{January}{\calendarMarks}{\calendarText}
 
@@ -44,7 +47,7 @@ setDateTexts(tonumber(\CalendarYear), \luastring{\@wall@eventsCsv})
 
 \SetQuote[xOffset=0pt, yOffset=-140mm]{February}{\txt{February Quote}}
 
-\SetPhoto[bleed=3mm, file={February}, thumbFile={}, caption={\txt{February Caption}}]{February}
+\SetPhoto[bleed=3mm, file={02-February}, thumbFile={02-February}, caption={\txt{February Caption}}]{February}
 \SetCalendar[bg/.style={opacity=0.8}]{February}
 \SetEvents{February}{\calendarMarks}{\calendarText}
 
@@ -52,7 +55,7 @@ setDateTexts(tonumber(\CalendarYear), \luastring{\@wall@eventsCsv})
 
 \SetQuote[xOffset=0pt, yOffset=-140mm]{March}{\txt{March Quote}}
 
-\SetPhoto[bleed=3mm, file={March}, thumbFile={}, caption={\txt{March Caption}}]{March}
+\SetPhoto[bleed=3mm, file={03-March}, thumbFile={03-March}, caption={\txt{March Caption}}]{March}
 \SetCalendar[bg/.style={opacity=0.8}]{March}
 \SetEvents{March}{\calendarMarks}{\calendarText}
 
@@ -60,7 +63,7 @@ setDateTexts(tonumber(\CalendarYear), \luastring{\@wall@eventsCsv})
 
 \SetQuote[xOffset=0pt, yOffset=-140mm]{April}{\txt{April Quote}}
 
-\SetPhoto[bleed=3mm, file={April}, thumbFile={}, caption={\txt{April Caption}}]{April}
+\SetPhoto[bleed=3mm, file={04-April}, thumbFile={04-April}, caption={\txt{April Caption}}]{April}
 \SetCalendar[bg/.style={opacity=0.8}]{April}
 \SetEvents{April}{\calendarMarks}{\calendarText}
 
@@ -68,7 +71,7 @@ setDateTexts(tonumber(\CalendarYear), \luastring{\@wall@eventsCsv})
 
 \SetQuote[xOffset=0pt, yOffset=-140mm]{May}{\txt{May Quote}}
 
-\SetPhoto[bleed=3mm, file={May}, thumbFile={}, caption={\txt{May Caption}}]{May}
+\SetPhoto[bleed=3mm, file={05-May}, thumbFile={05-May}, caption={\txt{May Caption}}]{May}
 \SetCalendar[bg/.style={opacity=0.8}]{May}
 \SetEvents{May}{\calendarMarks}{\calendarText}
 
@@ -76,7 +79,7 @@ setDateTexts(tonumber(\CalendarYear), \luastring{\@wall@eventsCsv})
 
 \SetQuote[xOffset=0pt, yOffset=-140mm]{June}{\txt{June Quote}}
 
-\SetPhoto[bleed=3mm, file={June}, thumbFile={}, caption={\txt{June Caption}}]{June}
+\SetPhoto[bleed=3mm, file={06-June}, thumbFile={06-June}, caption={\txt{June Caption}}]{June}
 \SetCalendar[bg/.style={opacity=0.8}]{June}
 \SetEvents{June}{\calendarMarks}{\calendarText}
 
@@ -84,7 +87,7 @@ setDateTexts(tonumber(\CalendarYear), \luastring{\@wall@eventsCsv})
 
 \SetQuote[xOffset=0pt, yOffset=-140mm]{July}{\txt{July Quote}}
 
-\SetPhoto[bleed=3mm, file={July}, thumbFile={}, caption={\txt{July Caption}}]{July}
+\SetPhoto[bleed=3mm, file={07-July}, thumbFile={07-July}, caption={\txt{July Caption}}]{July}
 \SetCalendar[bg/.style={opacity=0.8}]{July}
 \SetEvents{July}{\calendarMarks}{\calendarText}
 
@@ -92,7 +95,7 @@ setDateTexts(tonumber(\CalendarYear), \luastring{\@wall@eventsCsv})
 
 \SetQuote[xOffset=0pt, yOffset=-140mm]{August}{\txt{August Quote}}
 
-\SetPhoto[bleed=3mm, file={August}, thumbFile={}, caption={\txt{August Caption}}]{August}
+\SetPhoto[bleed=3mm, file={08-August}, thumbFile={08-August}, caption={\txt{August Caption}}]{August}
 \SetCalendar[bg/.style={opacity=0.8}]{August}
 \SetEvents{August}{\calendarMarks}{\calendarText}
 
@@ -100,7 +103,7 @@ setDateTexts(tonumber(\CalendarYear), \luastring{\@wall@eventsCsv})
 
 \SetQuote[xOffset=0pt, yOffset=-140mm]{September}{\txt{September Quote}}
 
-\SetPhoto[bleed=3mm, file={September}, thumbFile={}, caption={\txt{September Caption}}]{September}
+\SetPhoto[bleed=3mm, file={09-September}, thumbFile={09-September}, caption={\txt{September Caption}}]{September}
 \SetCalendar[bg/.style={opacity=0.8}]{September}
 \SetEvents{September}{\calendarMarks}{\calendarText}
 
@@ -108,7 +111,7 @@ setDateTexts(tonumber(\CalendarYear), \luastring{\@wall@eventsCsv})
 
 \SetQuote[xOffset=0pt, yOffset=-140mm]{October}{\txt{October Quote}}
 
-\SetPhoto[bleed=3mm, file={October}, thumbFile={}, caption={\txt{October Caption}}]{October}
+\SetPhoto[bleed=3mm, file={10-October}, thumbFile={10-October}, caption={\txt{October Caption}}]{October}
 \SetCalendar[bg/.style={opacity=0.8}]{October}
 \SetEvents{October}{\calendarMarks}{\calendarText}
 
@@ -116,7 +119,7 @@ setDateTexts(tonumber(\CalendarYear), \luastring{\@wall@eventsCsv})
 
 \SetQuote[xOffset=0pt, yOffset=-140mm]{November}{\txt{November Quote}}
 
-\SetPhoto[bleed=3mm, file={November}, thumbFile={}, caption={\txt{November Caption}}]{November}
+\SetPhoto[bleed=3mm, file={11-November}, thumbFile={11-November}, caption={\txt{November Caption}}]{November}
 \SetCalendar[bg/.style={opacity=0.8}]{November}
 \SetEvents{November}{\calendarMarks}{\calendarText}
 
@@ -124,7 +127,7 @@ setDateTexts(tonumber(\CalendarYear), \luastring{\@wall@eventsCsv})
 
 \SetQuote[xOffset=0pt, yOffset=-140mm]{December}{\txt{December Quote}}
 
-\SetPhoto[bleed=3mm, file={December}, thumbFile={}, caption={\txt{December Caption}}]{December}
+\SetPhoto[bleed=3mm, file={12-December}, thumbFile={12-December}, caption={\txt{December Caption}}]{December}
 \SetCalendar[bg/.style={opacity=0.8}]{December}
 \SetEvents{December}{\calendarMarks}{\calendarText}
 
