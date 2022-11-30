@@ -164,7 +164,13 @@
 % pantone 1245C, RGB 191,145,12 HEX: #BF910C
 % pantone 1255C, CMYK 0,27.5,100,34
 \definecolor{gold}{cmyk}{0,0.275,1,0.34}
-\definecolor{darkgold}{cmyk}{0.27,0.53,1,0.09}
+
+% Color picker shows: #AC711D, rgb(172, 113, 29), hsl(35, 71%, 39%), CMYK (0, 87, 212, 83)
+% \definecolor{darkgold}{cmyk}{0.27,0.53,1,0.09}
+
+% Color picker shows: #AB701C, rgb(171, 112, 28), hsl(35, 72%, 39%), CMYK (0, 88, 213, 84)
+\definecolor{darkgold}{rgb}{0.670,0.439,0.110}
+
 %\definecolor{orangegold}{cmyk}{0,0.31,0.89,0}
 \colorlet{orangegold}{darkgold}
 
@@ -324,6 +330,18 @@
     }%
     \def\@wall@photo@setYOffset{%
       \setlength{\@t@yOffset}{\@t@calendar@height + \@t@bleed + 1pt}%
+    }%
+  },
+  full width portrait/.code = {%
+    \def\@wall@photo@putPhoto##1{%
+      \includegraphics[%
+        keepaspectratio,%
+        width={\calPaperWidth + 2\@t@bleed},%
+      ]{##1}%
+    }%
+    \def\@wall@photo@setYOffset{%
+      % 7mm space for wire punch holes, 1pt overlap with calendar box to ensure no white gap.
+      \setlength{\@t@yOffset}{-7mm - \@t@bleed - 1pt}%
     }%
   },
   full width/.code = {%
