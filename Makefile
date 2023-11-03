@@ -32,7 +32,7 @@ wall-portrait-largecal-one-side:
 	cd wall-portrait-largecal-one-side && $(LATEX) $(LATEX_OPTS) wall.tex
 
 calculate-data:
-	@go run ./template-helpers/calculate-data.go $(YEAR)
+	source ~/.venvs/user-global/bin/activate && ./template-helpers/calculate-data.py $(YEAR) ./data/events.csv
 
 jpg-to-pdf:
 	./template-helpers/jpg-to-pdf.sh ./images/jpg ./images/pdf

@@ -7,8 +7,8 @@ date;day_text;note;label;phase;season;season_number;season_total;days
 2021-02-05;\LastQuarter;;;waning;;0;0;0
 2021-02-11;\NewMoon;;;new;Hemanta;7;8;14
 2021-02-19;\FirstQuarter;;;waxing;;0;0;0
-2021-02-26;\FullMoon;\xMaghaPuja;magha;;;0;0;0
 2021-02-26;\FullMoon;;magha;full;Hemanta;8;8;15
+2021-02-26;\FullMoon;\xMaghaPuja;magha;;;0;0;0
 2021-03-06;\LastQuarter;;;waning;;0;0;0
 2021-03-13;\NewMoon;;;new;Gimha;1;10;15
 2021-03-21;\FirstQuarter;;;waxing;;0;0;0
@@ -45,9 +45,9 @@ date;day_text;note;label;phase;season;season_number;season_total;days
 2021-09-29;\LastQuarter;;;waning;;0;0;0
 2021-10-06;\NewMoon;;;new;Vassāna;5;8;15
 2021-10-14;\FirstQuarter;;;waxing;;0;0;0
+2021-10-21;\FullMoon;;pavarana;full;Vassāna;6;8;15
 2021-10-21;\FullMoon;\xPavarana;pavarana;;;0;0;0
 2021-10-21;\FullMoon;\xLastDayOfVassa;last-day;;;0;0;0
-2021-10-21;\FullMoon;;pavarana;full;Vassāna;6;8;15
 2021-10-29;\LastQuarter;;;waning;;0;0;0
 2021-11-04;\NewMoon;;;new;Vassāna;7;8;14
 2021-11-12;\FirstQuarter;;;waxing;;0;0;0

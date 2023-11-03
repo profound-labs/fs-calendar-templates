@@ -5,8 +5,8 @@ Using the [wallcalendar](https://github.com/profound-labs/wallcalendar) document
 ## Requirements
 
 - git annex
+- [splendidmoons](https://github.com/splendidmoons/splendidmoons)
 - [img2pdf](https://pypi.python.org/pypi/img2pdf)
-- golang
 
 ## Starting a new year
 
