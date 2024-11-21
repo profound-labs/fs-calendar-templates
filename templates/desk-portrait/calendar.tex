@@ -1,0 +1,71 @@
+\documentclass[
+  year = 2026,
+  altyear = 2569,
+  language = english,
+  translationsInputFile = ../../text-english.tex,
+  translationsAutoload = false,
+  eventsCsv = ../../data/events.csv,
+  markDefaultsCsv = ../../data/marks_desk_portrait.csv,
+  imageFolder = ../../images/jpg_desk_portrait/,
+  a5Paper,% 148mm x 210mm
+  hMargin = 17mm,
+  topMargin = 20.5mm,
+  bottomMargin = 10mm,
+  %showtrims,
+  %varnishmask,
+]{wallcalendar}
+
+\usepackage{desk-local}
+
+\begin{document}
+
+\wireHoles
+
+% === Cover ===========================================================
+
+\DeskCoverPage
+
+% === Frontmatter =====================================================
+
+\newpage
+
+\ifvarnishmask
+\mbox{}
+\else
+\txt{Frontmatter Text}
+\fi
+
+% === Months ==========================================================
+
+\MonthPage[layout=full page, put photo=full page]{January}%
+\MonthPage[layout=full page, put photo=full page]{February}%
+\MonthPage[layout=full page, put photo=full page]{March}%
+\MonthPage[layout=full page, put photo=full page]{April}%
+\MonthPage[layout=full page, put photo=full page]{May}%
+\MonthPage[layout=full page, put photo=full page]{June}%
+\MonthPage[layout=full page, put photo=full page]{July}%
+\MonthPage[layout=full page, put photo=full page]{August}%
+\MonthPage[layout=full page, put photo=full page]{September}%
+\MonthPage[layout=full page, put photo=full page]{October}%
+\MonthPage[layout=full page, put photo=full page]{November}%
+\MonthPage[layout=full page, put photo=full page]{December}%
+
+% === Year Planner ====================================================
+
+\YearPlannerPortraitPage
+
+% === Thumbnails ======================================================
+
+\ThumbsPage
+
+% === Addresses =======================================================
+
+\newpage
+
+\ifvarnishmask
+\mbox{}
+\else
+\input{./desk-addresses.tex}
+\fi
+
+\end{document}

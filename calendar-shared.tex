@@ -13,12 +13,12 @@
 
 % NOTE: input path is relative to main document, such as wall.tex, which is in
 % the template folders now.
-\input{../translation-keys.tex}
-\input{../address-macros.tex}
+\input{../../translation-keys.tex}
+\input{../../address-macros.tex}
 
 \LoadTranslations
 
-\graphicspath{{./},{../},{../images/},{../images/jpg_thumbs/},{\@wall@imageFolder}}
+\graphicspath{{./},{../},{../../},{../../images/},{../../images/jpg_thumbs/},{\@wall@imageFolder}}
 
 \definecolor{gridcolor}{gray}{0.85}
 \colorlet{mooncolor}{darkgold}
@@ -28,7 +28,7 @@
 % === Fonts ===
 
 \usepackage{fontspec}
-\defaultfontfeatures{ Ligatures={TeX}, Path = {../fonts/}, }
+\defaultfontfeatures{ Ligatures={TeX}, Path = {../../fonts/}, }
 
 \setmainfont[
   SmallCapsFont = AlegreyaSansSC-Regular.otf,
@@ -146,11 +146,18 @@
     \renewcommand\monthMarkFmt{\fontsize{7.5}{7.5}\selectfont\color{textbody}}%
     \renewcommand\plannerPortraitMonthFmt{\fontsize{12}{12}\selectfont\bfseries\color{darkgold}}%
     \renewcommand\plannerPortraitDayFmt{\fontsize{10}{10}\selectfont\color{plannerdatenum}}%
+
+    % Restore day letters colors.
+    % If they were set to white (e.g. for the gold bg),
+    % the colors are restored for the white bg planner page.
+    \renewcommand*\dayLetterFmt{\color[gray]{0.6}\tiny}%
+    \renewcommand*\dayTextFmt{\small}%
+
     \renewcommand\symbolSeparator{,}%
     \setlength{\markNumberAbove}{-7pt}%
-    \setlength{\markNumberRight}{-7pt}%
+    \setlength{\markNumberRight}{-6pt}%
     \setlength{\markDayTextAbove}{-9pt}%
-    \setlength{\markDayTextRight}{-7pt}%
+    \setlength{\markDayTextRight}{-6pt}%
   }
   \setlength{\plannerNotesSep}{8mm}
   \setlength{\plannerTitleSep}{7mm}
@@ -163,6 +170,11 @@
     \renewcommand\monthMarkFmt{\fontsize{7}{7}\selectfont\color{textbody}}%
     \renewcommand\plannerPortraitMonthFmt{\fontsize{10}{10}\selectfont\bfseries\color{darkgold}}%
     \renewcommand\plannerPortraitDayFmt{\fontsize{9}{9}\selectfont\color{plannerdatenum}}%
+
+    % Restore day letters colors.
+    \renewcommand*\dayLetterFmt{\color[gray]{0.6}\tiny}%
+    \renewcommand*\dayTextFmt{\small}%
+
     \renewcommand\symbolSeparator{,}%
     \setlength{\markNumberAbove}{-6.5pt}%
     \setlength{\markNumberRight}{-5pt}%
@@ -221,7 +233,7 @@
   events csv/.get=\@t@eventsCsv,
 }%
 \luadirect{
-require("../template-helpers/helpers.lua")
+require("../../scripts/helpers.lua")
 yearEventsAsThreeColsTable(
   tonumber(\@t@year),
   \@t@filterPred,
@@ -447,7 +459,7 @@ yearEventsAsThreeColsTable(
 
 % === Macros ===
 
-\newcommand*\quoteRef[1]{\itshape #1}
+\newcommand*\quoteRef[1]{\vspace*{8pt}\itshape\fontsize{9}{14}\selectfont #1}
 
 \sodef\soChapter{}{.1em}{.5em plus.1em}{.1em plus.1em minus.1em}
 
@@ -486,7 +498,7 @@ yearEventsAsThreeColsTable(
 
 \newcommand\parseMonthMarksDayTextAsCornerMarks{%
 \luadirect{
-require("../template-helpers/helpers.lua")
+require("../../scripts/helpers.lua")
 tex.sprint(';')
 monthMarksDayTextAsCornerMarks(\luastring{\theMonthName}, nil, \luastring{\@wall@eventsCsv})
 }}

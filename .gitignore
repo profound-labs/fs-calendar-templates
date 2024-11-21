@@ -1,3 +1,14 @@
+# Build artefacts
+calendar.pdf
+wall.pdf
+desk.pdf
+desk-stand.pdf
+data/events.csv
+dist/
+.doit.db
+.doit.db.bak
+.doit.db.dir
+
 # LaTeX temp files
 *.aux
 *.log
@@ -6,11 +17,6 @@
 *.fls
 *.fdb_latexmk
 *.out
-
-# Build artefacts
-wall.pdf
-desk.pdf
-desk-stand.pdf
 
 wallcalendar.zip
 doc/wallcalendar.pdf
@@ -48,3 +54,29 @@ TAGS
 [._]sw[a-p]
 *~
 tags
+
+# MacOS
+.DS_Store
+.idea
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/

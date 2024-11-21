@@ -547,7 +547,7 @@
     inner sep=0pt, line width=0pt,
   ] {};
   \node[
-    kite, draw, textbody, fill=textbody,
+    kite, draw, fill,
     scale=0.15, kite vertex angles=60,
     above=0pt of box.north, anchor=north,
   ] {};%
