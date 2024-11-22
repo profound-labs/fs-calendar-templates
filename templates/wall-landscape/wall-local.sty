@@ -30,15 +30,23 @@ setDateTexts(tonumber(\CalendarYear), \luastring{\@wall@calendarLanguage}, \luas
 \renewcommand\smallLandscapeFmt{%
   % Will affect the moons in the notes
   \setlength{\@wall@moonRaise}{-1.5pt}%
-  \renewcommand*\monthFmt{\fontsize{19}{19}\color{darkgold}\AlegreyaSansLightFont\selectfont}%
-  \renewcommand*\yearFmt{\fontsize{19}{19}\color{darkgold}\AlegreyaSansLightFont\selectfont}%
+
+  \ifthenelse{\equal{\@wall@calendarLanguage}{thai}}{%
+    \renewcommand*\monthFmt{\fontsize{22}{22}\color{darkgold}\THSarabunNewFont\selectfont}%
+    \renewcommand*\yearFmt{\fontsize{22}{22}\color{darkgold}\THSarabunNewFont\selectfont}%
+    \renewcommand*\dayLetterFmt{\fontsize{11}{11}\THSarabunNewFont\selectfont\bfseries\color[gray]{0.6}}%
+    \renewcommand*\eventsFmt{\setlength{\parindent}{0pt}\raggedright\fontsize{11}{13}\THSarabunNewFont\selectfont}%
+  }{%
+    \renewcommand*\monthFmt{\fontsize{19}{19}\color{darkgold}\AlegreyaSansLightFont\selectfont}%
+    \renewcommand*\yearFmt{\fontsize{19}{19}\color{darkgold}\AlegreyaSansLightFont\selectfont}%
+    \renewcommand*\dayLetterFmt{\fontsize{9}{9}\selectfont\color[gray]{0.6}}%
+    \renewcommand*\eventsFmt{\setlength{\parindent}{0pt}\raggedright\fontsize{9}{11}\selectfont}%
+  }%
   \renewcommand*\dayLetterColor{}%
-  \renewcommand*\dayLetterFmt{\fontsize{9}{9}\selectfont\color[gray]{0.6}}%
   \renewcommand*\dayTextFmt{\fontsize{13}{13}\AlegreyaSansFont\selectfont}%
   \renewcommand*\quoteFmt{\centering\AlegreyaSansLightFont\fontsize{11.5}{15}\selectfont}%
   \renewcommand*\headingFmt{\centering}%
   \renewcommand*\calendarFmt{\centering}%
-  \renewcommand*\eventsFmt{\setlength{\parindent}{0pt}\raggedright\fontsize{9}{11}\selectfont}%
   \setlength{\@t@calendar@minimumHeight}{90mm}%
   \setlength{\@t@calendar@hmargin}{50pt}%
   \setlength{\@t@calendar@verticalSpacing}{32mm + 5mm + 6.5mm}%

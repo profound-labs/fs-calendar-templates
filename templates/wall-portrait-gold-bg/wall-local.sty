@@ -38,15 +38,22 @@ setDateTexts(tonumber(\CalendarYear), \luastring{\@wall@calendarLanguage}, \luas
 }
 
 \renewcommand\fullPageFmt{%
-  \renewcommand*\monthFmt{\color{white}\LARGE}%
-  \renewcommand*\yearFmt{\color{white}\LARGE}%
+  \ifthenelse{\equal{\@wall@calendarLanguage}{thai}}{%
+    \renewcommand*\monthFmt{\color{white}\LARGE\THSarabunNewFont\selectfont}%
+    \renewcommand*\yearFmt{\color{white}\LARGE\THSarabunNewFont\selectfont}%
+    \renewcommand*\dayLetterFmt{\color{white}\fontsize{10}{10}\bfseries\THSarabunNewFont\selectfont}%
+    \renewcommand*\eventsFmt{\setlength{\parindent}{0pt}\raggedleft\fontsize{11}{13}\THSarabunNewFont\selectfont}%
+  }{%
+    \renewcommand*\monthFmt{\color{white}\LARGE}%
+    \renewcommand*\yearFmt{\color{white}\LARGE}%
+    \renewcommand*\dayLetterFmt{\color{white}\tiny}%
+    \renewcommand*\eventsFmt{\setlength{\parindent}{0pt}\raggedleft\footnotesize}%
+  }%
   \renewcommand*\dayLetterColor{}%
-  \renewcommand*\dayLetterFmt{\color{white}\tiny}%
   \renewcommand*\dayTextFmt{\color{white}\small}%
   \renewcommand*\quoteFmt{\AlegreyaSansLightFont\fontsize{11.5}{15}\selectfont}%
   \renewcommand*\headingFmt{\centering}%
   \renewcommand*\calendarFmt{\centering}%
-  \renewcommand*\eventsFmt{\setlength{\parindent}{0pt}\raggedleft\footnotesize}%
   \renewcommand\monthMarkFmt{\color{white}}%
 }
 

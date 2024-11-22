@@ -24,11 +24,11 @@ def task_all_templates():
 
     languages = [
         "english",
-        # "german",
+        "german",
         "italian",
-        # "norwegian",
+        "norwegian",
         "portuguese",
-        # "thai",
+        "thai",
     ]
 
     def all_templates_actions():
