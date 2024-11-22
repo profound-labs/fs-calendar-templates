@@ -11,6 +11,8 @@ dist/
 .doit.db.bak
 .doit.db.dir
 
+gh-pages/
+
 # LaTeX temp files
 *.aux
 *.log
