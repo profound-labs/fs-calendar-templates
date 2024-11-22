@@ -3,6 +3,8 @@ calendar.pdf
 wall.pdf
 desk.pdf
 desk-stand.pdf
+# Generated with mako templates
+calendar.tex
 data/events.csv
 dist/
 .doit.db

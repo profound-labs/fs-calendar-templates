@@ -1,8 +1,8 @@
 \documentclass[
-  year = 2026,
-  altyear = 2569,
-  language = english,
-  translationsInputFile = ../../text-english.tex,
+  year = ${year},
+  altyear = ${alt_year},
+  language = ${language},
+  translationsInputFile = ../../text-${language}.tex,
   translationsAutoload = false,
   eventsCsv = ../../data/events.csv,
   markDefaultsCsv = ../../data/marks_wall.csv,
@@ -11,21 +11,29 @@
   hMargin = 17mm,
   topMargin = 20.5mm,
   bottomMargin = 10mm,
-  %showtrims,
-  %varnishmask,
+% if cropmarks:
+  showtrims,
+% endif
+% if varnishmask:
+  varnishmask,
+% endif
 ]{wallcalendar}
 
 \usepackage{wall-local}
 
 \begin{document}
 
+% if placeholders:
 \wireHoles
+% else:
+\emptyPhotosAndQuotes
+% endif
 
-% === Cover ===========================================================
+%% === Cover ===========================================================
 
 \WallCoverPage
 
-% === Frontmatter =====================================================
+%% === Frontmatter =====================================================
 
 \newpage
 
@@ -35,9 +43,7 @@
 \txt{Frontmatter Text}
 \fi
 
-% === Months ==========================================================
-
-\reverseMoons
+%% === Months ==========================================================
 
 \MonthPage[layout=full page, put photo=full width portrait]{January}%
 \MonthPage[layout=full page, put photo=full width portrait]{February}%
@@ -52,17 +58,15 @@
 \MonthPage[layout=full page, put photo=full width portrait]{November}%
 \MonthPage[layout=full page, put photo=full width portrait]{December}%
 
-% === Year Planner ====================================================
-
-\restoreMoons
+%% === Year Planner ====================================================
 
 \YearPlannerPortraitPage
 
-% === Thumbnails ======================================================
+%% === Thumbnails ======================================================
 
 \ThumbsPage
 
-% === Addresses =======================================================
+%% === Addresses =======================================================
 
 \newpage
 

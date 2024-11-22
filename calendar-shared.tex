@@ -550,3 +550,25 @@ monthMarksDayTextAsCornerMarks(\luastring{\theMonthName}, nil, \luastring{\@wall
     \includegraphics[keepaspectratio, width=\calPaperWidth]{wire-holes}%
   }}%
 }
+
+\newcommand\emptyPhotosAndQuotes{%
+  {\globaldefs=1\relax
+    \foreach \d/\m in {
+      01/January,
+      02/February,
+      03/March,
+      04/April,
+      05/May,
+      06/June,
+      07/July,
+      08/August,
+      09/September,
+      10/October,
+      11/November,
+      12/December}
+    {%
+      \pgfkeys{/Quote/\m/text={\null}}%
+      \pgfkeys{/Photo/\m, file={\d-\m_empty}, thumbFile={\d-\m_thumb_empty}, caption={\null}}%
+    }%
+  }%
+}

@@ -1,31 +1,39 @@
 \documentclass[
-  year = 2026,
-  altyear = 2569,
-  language = english,
-  translationsInputFile = ../../text-english.tex,
+  year = ${year},
+  altyear = ${alt_year},
+  language = ${language},
+  translationsInputFile = ../../text-${language}.tex,
   translationsAutoload = false,
   eventsCsv = ../../data/events.csv,
   markDefaultsCsv = ../../data/marks_desk_landscape.csv,
   imageFolder = ../../images/jpg_desk_landscape/,
-  a5Paper,% 148mm x 210mm
+  a5Paper,
   hMargin = 6mm,
   topMargin = 20.5mm,
   bottomMargin = 10mm,
-  %showtrims,
-  %varnishmask,
+% if cropmarks:
+  showtrims,
+% endif
+% if varnishmask:
+  varnishmask,
+% endif
 ]{wallcalendar}
 
 \usepackage{desk-local}
 
 \begin{document}
 
+% if placeholders:
 \wireHoles
+% else:
+\emptyPhotosAndQuotes
+% endif
 
-% === Cover ===========================================================
+%% === Cover ===========================================================
 
 \DeskCoverPage
 
-% === Frontmatter =====================================================
+%% === Frontmatter =====================================================
 
 \newpage
 
@@ -35,7 +43,7 @@
 \txt{Frontmatter Text}
 \fi
 
-% === Months ==========================================================
+%% === Months ==========================================================
 
 \MonthPage[layout=small desk landscape, put photo=margin width]{January}%
 \MonthPage[layout=small desk landscape, put photo=margin width]{February}%
@@ -50,15 +58,15 @@
 \MonthPage[layout=small desk landscape, put photo=margin width]{November}%
 \MonthPage[layout=small desk landscape, put photo=margin width]{December}%
 
-% === Year Planner ====================================================
+%% === Year Planner ====================================================
 
 \YearPlannerPortraitPage
 
-% === Thumbnails ======================================================
+%% === Thumbnails ======================================================
 
 \ThumbsPage
 
-% === Addresses =======================================================
+%% === Addresses =======================================================
 
 \newpage
 
