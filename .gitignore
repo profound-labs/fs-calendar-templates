@@ -5,13 +5,14 @@ desk.pdf
 desk-stand.pdf
 # Generated with mako templates
 calendar.tex
-data/events.csv
-dist/
+data/years/*.csv
 .doit.db
 .doit.db.bak
 .doit.db.dir
 
 gh-pages/
+
+node_modules/
 
 # LaTeX temp files
 *.aux

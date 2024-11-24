@@ -1,0 +1,19 @@
+{
+  "name": "fs-calendar-templates",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "sass": "sass --style=compressed --load-path=node_modules/@picocss/pico/scss/ sass/main.scss:gh-pages/assets/css/main.min.css",
+    "sass-watch": "sass --watch --style=compressed --load-path=node_modules/@picocss/pico/scss/ sass/main.scss:gh-pages/assets/css/main.min.css"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@picocss/pico": "^2.0.6",
+    "sass": "^1.81.0"
+  }
+}

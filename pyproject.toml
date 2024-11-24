@@ -10,6 +10,8 @@ python = "^3.12"
 splendidmoons = "^1.0.2"
 doit = "^0.36.0"
 mako = "^1.3.6"
+pillow = "^11.0.0"
+pymupdf = "^1.24.14"
 
 
 [build-system]
