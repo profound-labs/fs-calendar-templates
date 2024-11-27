@@ -31,28 +31,29 @@ setDateTexts(tonumber(\CalendarYear), \luastring{\@wall@calendarLanguage}, \luas
   \let\@wall@LastQuarter\@origLastQuarter%
 }
 
-\renewcommand{\FrontmatterFmt}{%
-  \vspace*{-4\baselineskip}%
-  \fontsize{8}{11}\selectfont%
-  \setlength{\parskip}{0.5\baselineskip}%
-  % \enlargethispage*{\baselineskip}%
-}
-
 \renewcommand{\calendarMarks}{%
   \parseMonthMarksDayText%
   \parseMonthMarksNote%
 }
 
 \renewcommand\fullPageFmt{%
-  \renewcommand*\monthFmt{\color{white}\LARGE}%
-  \renewcommand*\yearFmt{\color{white}\LARGE}%
+  \ifthai
+    \renewcommand*\monthFmt{\color{white}\LARGE\thaiFont\selectfont}%
+    \renewcommand*\yearFmt{\color{white}\LARGE\thaiFont\selectfont}%
+    \renewcommand*\dayLetterFmt{\color{white}\fontsize{10}{10}\bfseries\thaiFont\selectfont}%
+    \renewcommand*\eventsFmt{\setlength{\parindent}{0pt}\raggedleft\fontsize{11}{13}\thaiFont\selectfont}%
+    \renewcommand*\quoteFmt{\fontsize{11.5}{15}\thaiFont\selectfont}%
+  \else
+    \renewcommand*\monthFmt{\color{white}\LARGE}%
+    \renewcommand*\yearFmt{\color{white}\LARGE}%
+    \renewcommand*\dayLetterFmt{\color{white}\tiny}%
+    \renewcommand*\eventsFmt{\setlength{\parindent}{0pt}\raggedleft\footnotesize}%
+    \renewcommand*\quoteFmt{\AlegreyaSansLightFont\fontsize{11.5}{15}\selectfont}%
+  \fi
   \renewcommand*\dayLetterColor{}%
-  \renewcommand*\dayLetterFmt{\color{white}\tiny}%
   \renewcommand*\dayTextFmt{\color{white}\small}%
-  \renewcommand*\quoteFmt{\AlegreyaSansLightFont\fontsize{11.5}{15}\selectfont}%
   \renewcommand*\headingFmt{\centering}%
   \renewcommand*\calendarFmt{\centering}%
-  \renewcommand*\eventsFmt{\setlength{\parindent}{0pt}\raggedleft\footnotesize}%
   \renewcommand\monthMarkFmt{\color{white}}%
 }
 

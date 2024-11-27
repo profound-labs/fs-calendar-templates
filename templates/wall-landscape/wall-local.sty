@@ -10,12 +10,6 @@ require("../../scripts/helpers.lua")
 setDateTexts(tonumber(\CalendarYear), \luastring{\@wall@calendarLanguage}, \luastring{\@wall@eventsCsv})
 }
 
-\renewcommand{\FrontmatterFmt}{%
-  \fontsize{9}{14}\selectfont%
-  \setlength{\parskip}{0.5\baselineskip}%
-  \vspace*{-4\baselineskip}%
-}
-
 \renewcommand{\calendarMarks}{%
   \parseMonthMarksDayTextAsCornerMarks%
   \parseMonthMarksNote%
@@ -31,25 +25,27 @@ setDateTexts(tonumber(\CalendarYear), \luastring{\@wall@calendarLanguage}, \luas
   % Will affect the moons in the notes
   \setlength{\@wall@moonRaise}{-1.5pt}%
 
-  \ifthenelse{\equal{\@wall@calendarLanguage}{thai}}{%
-    \renewcommand*\monthFmt{\fontsize{22}{22}\color{darkgold}\THSarabunNewFont\selectfont}%
-    \renewcommand*\yearFmt{\fontsize{22}{22}\color{darkgold}\THSarabunNewFont\selectfont}%
-    \renewcommand*\dayLetterFmt{\fontsize{11}{11}\THSarabunNewFont\selectfont\bfseries\color[gray]{0.6}}%
-    \renewcommand*\eventsFmt{\setlength{\parindent}{0pt}\raggedright\fontsize{11}{13}\THSarabunNewFont\selectfont}%
-  }{%
+  \ifthai
+    \renewcommand*\monthFmt{\fontsize{22}{22}\color{darkgold}\thaiFont\selectfont}%
+    \renewcommand*\yearFmt{\fontsize{22}{22}\color{darkgold}\thaiFont\selectfont}%
+    \renewcommand*\dayLetterFmt{\fontsize{11}{11}\bfseries\color[gray]{0.6}\thaiFont\selectfont}%
+    \renewcommand*\eventsFmt{\setlength{\parindent}{0pt}\raggedright\fontsize{11}{13}\thaiFont\selectfont}%
+    \renewcommand*\quoteFmt{\centering\fontsize{15}{19}\thaiFont\selectfont}%
+    \setlength{\@t@calendar@verticalSpacing}{35mm + 5mm + 6.5mm}%
+  \else
     \renewcommand*\monthFmt{\fontsize{19}{19}\color{darkgold}\AlegreyaSansLightFont\selectfont}%
     \renewcommand*\yearFmt{\fontsize{19}{19}\color{darkgold}\AlegreyaSansLightFont\selectfont}%
     \renewcommand*\dayLetterFmt{\fontsize{9}{9}\selectfont\color[gray]{0.6}}%
     \renewcommand*\eventsFmt{\setlength{\parindent}{0pt}\raggedright\fontsize{9}{11}\selectfont}%
-  }%
+    \renewcommand*\quoteFmt{\centering\AlegreyaSansLightFont\fontsize{11.5}{15}\selectfont}%
+    \setlength{\@t@calendar@verticalSpacing}{32mm + 5mm + 6.5mm}%
+  \fi
   \renewcommand*\dayLetterColor{}%
-  \renewcommand*\dayTextFmt{\fontsize{13}{13}\AlegreyaSansFont\selectfont}%
-  \renewcommand*\quoteFmt{\centering\AlegreyaSansLightFont\fontsize{11.5}{15}\selectfont}%
+  \renewcommand*\dayTextFmt{\fontsize{13}{13}\normalfont\selectfont}%
   \renewcommand*\headingFmt{\centering}%
   \renewcommand*\calendarFmt{\centering}%
   \setlength{\@t@calendar@minimumHeight}{90mm}%
   \setlength{\@t@calendar@hmargin}{50pt}%
-  \setlength{\@t@calendar@verticalSpacing}{32mm + 5mm + 6.5mm}%
 }
 
 % =============================== Quote positions ==============================

@@ -24,6 +24,17 @@
 \colorlet{mooncolor}{darkgold}
 \colorlet{sunday}{black}
 
+\usepackage{ifthen}
+
+\newif\ifthai
+\ifthenelse{\equal{\@wall@calendarLanguage}{thai}}{\thaitrue}{\thaifalse}
+
+\newif\ifitalian
+\ifthenelse{\equal{\@wall@calendarLanguage}{italian}}{\italiantrue}{\italianfalse}
+
+\newif\ifportuguese
+\ifthenelse{\equal{\@wall@calendarLanguage}{portuguese}}{\portuguesetrue}{\portuguesefalse}
+
 % === Fonts ===
 
 \usepackage{fontspec}
@@ -99,7 +110,6 @@
 
 % === Packages ===
 
-\usepackage{ifthen}
 \usepackage{textcomp}
 
 \usepackage{soul}
@@ -140,20 +150,43 @@
 \definecolor{browntan}{cmyk}{0, 0.15, 0.38, 0.36}
 
 \newcommand\WallCoverPage{%
-  \IfFileExists{./wall-cover-\@wall@calendarLanguage.tex}%
-  {\input{./wall-cover-\@wall@calendarLanguage.tex}}%
-  {\input{./wall-cover.tex}}
+  \IfFileExists{../../wall-cover-\@wall@calendarLanguage.tex}%
+  {\input{../../wall-cover-\@wall@calendarLanguage.tex}}%
+  {\input{../../wall-cover.tex}}
 }%
 
 \newcommand\DeskCoverPage{%
-  \IfFileExists{./desk-cover-\@wall@calendarLanguage.tex}%
-  {\input{./desk-cover-\@wall@calendarLanguage.tex}}%
-  {\input{./desk-cover.tex}}
+  \IfFileExists{../../desk-cover-\@wall@calendarLanguage.tex}%
+  {\input{../../desk-cover-\@wall@calendarLanguage.tex}}%
+  {\input{../../desk-cover.tex}}
 }%
+
+\newcommand\addressCountryFmt{}
+\newcommand\addressHeaderFmt{}
+\newcommand\addressCountry[1]{{\addressCountryFmt #1:}}
+
+\ifwall
+  \ifthai
+    \renewcommand\addressCountryFmt{\thaiFont\bfseries\fontsize{14}{16}\selectfont}
+    \renewcommand\addressHeaderFmt{\thaiFont\fontsize{14}{14}\bfseries\selectfont}
+  \else
+    \renewcommand\addressCountryFmt{\normalfont\bfseries\selectfont}
+    \renewcommand\addressHeaderFmt{\normalfont\upshape\selectfont}
+  \fi
+\else
+  \ifthai
+    \renewcommand\addressCountryFmt{\thaiFont\bfseries\fontsize{12}{14}\selectfont}
+    \renewcommand\addressHeaderFmt{\thaiFont\fontsize{9}{9}\bfseries\selectfont}
+  \else
+    \renewcommand\addressCountryFmt{\normalfont\bfseries\selectfont}
+    \renewcommand\addressHeaderFmt{\normalfont\upshape\selectfont}
+    \renewcommand\addressHeaderFmt{\normalfont\fontsize{9}{12}\upshape\selectfont}
+  \fi
+\fi
 
 % === Year Planner Page ===
 
-\newcommand\plannerYearFmt{\fontsize{28}{28}\selectfont\color{orangegold}}
+\newcommand\plannerYearFmt{\normalfont\fontsize{28}{28}\selectfont\color{orangegold}}
 
 \newlength\plannerNotesSep
 \newlength\plannerTitleSep
@@ -165,17 +198,34 @@
 
 \newcommand\tabcolgap{\hspace*{20pt}}
 
+\newcommand\plannerDateFmt{\itshape}
+\newcommand\plannerEventCellFmt{}
+
+\ifthai
+  \renewcommand\plannerDateFmt{\upshape}
+  \renewcommand\plannerEventCellFmt{\thaiFont\selectfont}
+\fi
+
 \ifwall
   \renewcommand\preYearPlannerPageHook{%
     \setlength{\@wall@moonRaise}{-1.6pt}%
-    \renewcommand\monthMarkFmt{\fontsize{7.5}{7.5}\selectfont\color{textbody}}%
-    \renewcommand\plannerPortraitMonthFmt{\fontsize{12}{12}\selectfont\bfseries\color{darkgold}}%
-    \renewcommand\plannerPortraitDayFmt{\fontsize{10}{10}\selectfont\color{plannerdatenum}}%
+    \ifthai
+      \renewcommand\plannerPortraitMonthFmt{\thaiFont\fontsize{12}{12}\selectfont\bfseries\color{darkgold}}%
+    \else
+      \renewcommand\plannerPortraitMonthFmt{\normalfont\fontsize{12}{12}\selectfont\bfseries\color{darkgold}}%
+    \fi
+
+    \renewcommand\monthMarkFmt{\fontsize{7.5}{7.5}\normalfont\selectfont\color{textbody}}%
+    \renewcommand\plannerPortraitDayFmt{\fontsize{10}{10}\normalfont\selectfont\color{plannerdatenum}}%
 
     % Restore day letters colors.
     % If they were set to white (e.g. for the gold bg),
     % the colors are restored for the white bg planner page.
-    \renewcommand*\dayLetterFmt{\color[gray]{0.6}\tiny}%
+    \ifthai
+      \renewcommand*\dayLetterFmt{\thaiFont\color[gray]{0.2}\small\selectfont}%
+    \else
+      \renewcommand*\dayLetterFmt{\color[gray]{0.6}\tiny}%
+    \fi
     \renewcommand*\dayTextFmt{\small}%
 
     \renewcommand\symbolSeparator{,}%
@@ -184,20 +234,34 @@
     \setlength{\markDayTextAbove}{-9pt}%
     \setlength{\markDayTextRight}{-6pt}%
   }
-  \setlength{\plannerNotesSep}{8mm}
-  \setlength{\plannerTitleSep}{7mm}
-  \setlength{\plannerTopSkip}{-13pt}
+  \ifthai
+    \setlength{\plannerNotesSep}{6mm}
+    \setlength{\plannerTitleSep}{5mm}
+    \setlength{\plannerTopSkip}{-15pt}
+  \else
+    \setlength{\plannerNotesSep}{8mm}
+    \setlength{\plannerTitleSep}{7mm}
+    \setlength{\plannerTopSkip}{-13pt}
+  \fi
 \else
   \renewcommand\preYearPlannerPageHook{%
     \enlargethispage*{\baselineskip}%
     \setlength{\@wall@moonRaise}{-1.7pt}%
-    \renewcommand\plannerYearFmt{\fontsize{22}{22}\selectfont\color{orangegold}}%
-    \renewcommand\monthMarkFmt{\fontsize{7}{7}\selectfont\color{textbody}}%
-    \renewcommand\plannerPortraitMonthFmt{\fontsize{10}{10}\selectfont\bfseries\color{darkgold}}%
-    \renewcommand\plannerPortraitDayFmt{\fontsize{9}{9}\selectfont\color{plannerdatenum}}%
+    \ifthai
+      \renewcommand\plannerPortraitMonthFmt{\thaiFont\fontsize{10}{10}\selectfont\bfseries\color{darkgold}}%
+    \else
+      \renewcommand\plannerPortraitMonthFmt{\normalfont\fontsize{10}{10}\selectfont\bfseries\color{darkgold}}%
+    \fi
+    \renewcommand\plannerYearFmt{\fontsize{22}{22}\normalfont\selectfont\color{orangegold}}%
+    \renewcommand\monthMarkFmt{\fontsize{7}{7}\normalfont\selectfont\color{textbody}}%
+    \renewcommand\plannerPortraitDayFmt{\fontsize{9}{9}\normalfont\selectfont\color{plannerdatenum}}%
 
     % Restore day letters colors.
-    \renewcommand*\dayLetterFmt{\color[gray]{0.6}\tiny}%
+    \ifthai
+      \renewcommand*\dayLetterFmt{\thaiFont\color[gray]{0.2}\small\selectfont}%
+    \else
+      \renewcommand*\dayLetterFmt{\color[gray]{0.6}\tiny}%
+    \fi
     \renewcommand*\dayTextFmt{\small}%
 
     \renewcommand\symbolSeparator{,}%
@@ -406,6 +470,11 @@ yearEventsAsThreeColsTable(
 \setlength{\thumbColumnWidth}{0.5\calPaperWidth - \thumbSep}
 \setlength{\thumbColumnHeight}{\textheight}
 
+\newcommand\ThumbsPageFmt{}
+\ifthai
+  \renewcommand\ThumbsPageFmt{\thaiFont\selectfont}
+\fi
+
 \newcommand\ThumbsPage{%
 \clearpage
 
@@ -416,6 +485,7 @@ yearEventsAsThreeColsTable(
 \centering%
 \setlength{\parindent}{0pt}%
 \setlength{\parskip}{0pt}%
+\ThumbsPageFmt%
 
 % NOTE: multicols will not \vfill
 % Left Column
@@ -495,8 +565,21 @@ yearEventsAsThreeColsTable(
 \renewcommand\symbolSeparator{\thinspace}
 
 \newcommand{\FrontmatterFmt}{%
-\fontsize{9}{14}\selectfont%
-\setlength{\parskip}{0.7\baselineskip}%
+  \ifwall
+    \ifthai
+      \fontsize{11}{16}\selectfont%
+    \else
+      \fontsize{9}{14}\selectfont%
+    \fi
+  \else
+    \ifthai
+      \fontsize{10}{13}\selectfont%
+    \else
+      \fontsize{8}{11}\selectfont%
+    \fi
+  \fi
+  \setlength{\parskip}{0.5\baselineskip}%
+  \vspace*{-4\baselineskip}%
 }
 
 \newcommand*{\s}[1]{\textsuperscript{#1}}

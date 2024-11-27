@@ -22,8 +22,17 @@
 
 \mbox{}\vfill
 
-\resizebox{108mm}{!}{\color{white}Calendário}\\[3mm]
-\resizebox{108mm}{!}{\color{white}do Sangha da Floresta}\\[3mm]
+\ifthai
+  {\fontsize{46}{46}\THSarabunNewFont\selectfont\color{white}\xCalendarTitle}\\[3mm]
+\else \ifitalian
+  \resizebox{108mm}{!}{\color{white}Calendario}\\[3mm]
+  \resizebox{108mm}{!}{\color{white}Forest Sangha}\\[3mm]
+\else \ifportuguese
+  \resizebox{108mm}{!}{\color{white}Calendário}\\[3mm]
+  \resizebox{108mm}{!}{\color{white}do Sangha da Floresta}\\[3mm]
+\else
+  \resizebox{108mm}{!}{\color{white}\xCalendarTitle}\\[3mm]
+\fi \fi \fi
 \resizebox{108mm}{!}{\color{white}%
 \CalendarYear\space
 \textbullet\space

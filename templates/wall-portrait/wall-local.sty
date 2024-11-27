@@ -10,22 +10,24 @@ require("../../scripts/helpers.lua")
 setDateTexts(tonumber(\CalendarYear), \luastring{\@wall@calendarLanguage}, \luastring{\@wall@eventsCsv})
 }
 
-\renewcommand{\FrontmatterFmt}{%
-  \fontsize{9}{14}\selectfont%
-  \setlength{\parskip}{0.5\baselineskip}%
-  \vspace*{-4\baselineskip}%
-}
-
 \renewcommand\fullPageFmt{%
-  \renewcommand*\monthFmt{\color{darkgold}\LARGE}%
-  \renewcommand*\yearFmt{\color{darkgold}\LARGE}%
+  \ifthai
+    \renewcommand*\monthFmt{\color{darkgold}\LARGE\thaiFont\selectfont}%
+    \renewcommand*\yearFmt{\color{darkgold}\LARGE\thaiFont\selectfont}%
+    \renewcommand*\dayLetterFmt{\fontsize{10}{10}\bfseries\thaiFont\selectfont}%
+    \renewcommand*\eventsFmt{\setlength{\parindent}{0pt}\raggedleft\fontsize{11}{13}\thaiFont\selectfont}%
+    \renewcommand*\quoteFmt{\fontsize{11.5}{15}\thaiFont\selectfont}%
+  \else
+    \renewcommand*\monthFmt{\color{darkgold}\LARGE}%
+    \renewcommand*\yearFmt{\color{darkgold}\LARGE}%
+    \renewcommand*\dayLetterFmt{\tiny}%
+    \renewcommand*\eventsFmt{\setlength{\parindent}{0pt}\raggedleft\footnotesize}%
+    \renewcommand*\quoteFmt{\AlegreyaSansLightFont\fontsize{11.5}{15}\selectfont}%
+  \fi
   \renewcommand*\dayLetterColor{}%
-  \renewcommand*\dayLetterFmt{\tiny}%
   \renewcommand*\dayTextFmt{\small}%
-  \renewcommand*\quoteFmt{\AlegreyaSansLightFont\fontsize{11.5}{15}\selectfont}%
   \renewcommand*\headingFmt{\centering}%
   \renewcommand*\calendarFmt{\centering}%
-  \renewcommand*\eventsFmt{\setlength{\parindent}{0pt}\raggedleft\footnotesize}%
 }
 
 % =============================== January ======================================

@@ -12,28 +12,9 @@ setDateTexts(tonumber(\CalendarYear), \luastring{\@wall@calendarLanguage}, \luas
 
 \usepackage{desk-landscape-layout}
 
-\renewcommand{\FrontmatterFmt}{%
-  \vspace*{-4\baselineskip}%
-  \fontsize{8}{11}\selectfont%
-  \setlength{\parskip}{0.5\baselineskip}%
-  % \enlargethispage*{\baselineskip}%
-}
-
 \renewcommand{\calendarMarks}{%
   \parseMonthMarksDayText%
   \parseMonthMarksNote%
-}
-
-\renewcommand\fullPageFmt{%
-  \renewcommand*\monthFmt{\LARGE}%
-  \renewcommand*\yearFmt{\LARGE}%
-  \renewcommand*\dayLetterColor{}%
-  \renewcommand*\dayLetterFmt{\tiny}%
-  \renewcommand*\dayTextFmt{\small}%
-  \renewcommand*\quoteFmt{\fontsize{12}{16}\selectfont}%
-  \renewcommand*\headingFmt{\centering}%
-  \renewcommand*\calendarFmt{\centering}%
-  \renewcommand*\eventsFmt{\setlength{\parindent}{0pt}\raggedleft\footnotesize}%
 }
 
 % =============================== Quote positions ==============================

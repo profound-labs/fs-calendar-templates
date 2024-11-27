@@ -88,12 +88,22 @@ def _remove_uposatha_info(e: CalendarEvent) -> CalendarEvent:
     e['days'] = 0
     return e
 
+def _season_texts(e: CalendarEvent) -> CalendarEvent:
+    s = e['season']
+    if s == "Vassāna":
+        e['season'] = "\\xVassana"
+    else:
+        e['season'] = "\\x" + s
+
+    return e
+
 def _collect_events(from_year: int, to_year: int) -> List[CsvEvent]:
     events: List[CalendarEvent] = []
 
     year = from_year
     while year <= to_year:
-        events.extend(year_moondays(year, MOON_PHASE_DAY_TEXT))
+        a = [_season_texts(x) for x in year_moondays(year, MOON_PHASE_DAY_TEXT)]
+        events.extend(a)
         # Uposathas are already added with phase.
         #
         # The event filtering in Lua scripts (isUposatha()) determines uposathas

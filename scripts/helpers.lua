@@ -146,7 +146,7 @@ function formatOne(events, idx)
   local date_as_text = "\\x"..d:fmt("%b").."Short\\space "..d:getday()
   local mark_as_text = "\\s{"..mark.symbol.."}"
 
-  return mark_as_text .. " \\textit{" .. date_as_text .. ":} & " .. event.note
+  return "{\\plannerEventCellFmt " .. mark_as_text .. " {\\plannerDateFmt " .. date_as_text .. ":}} & {\\plannerEventCellFmt " .. event.note .. "}"
 end
 
 function formatThreeForTable(events, indexes)
