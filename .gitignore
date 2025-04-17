@@ -5,7 +5,6 @@ desk.pdf
 desk-stand.pdf
 # Generated with mako templates
 calendar.tex
-data/years/*.csv
 .doit.db
 .doit.db.bak
 .doit.db.dir
