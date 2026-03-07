@@ -22,9 +22,11 @@ node_modules/
 *.fdb_latexmk
 *.out
 
+# Project output
 wallcalendar.zip
 doc/wallcalendar.pdf
 doc/wallcalendar-code.pdf
+doc/_minted/
 doc/_minted-wallcalendar/
 doc/_minted-wallcalendar-code/
 doc/examples/i18n
@@ -38,6 +40,8 @@ doc/examples/diff-new/*.pdf
 doc/examples/diff-new/doc_data.txt
 doc/examples/diff-compare/*.jpg
 doc/examples/diff-compare/doc_data.txt
+mwe.tex
+mwe.pdf
 
 # Emacs temp files
 auto/
@@ -58,6 +62,11 @@ TAGS
 [._]sw[a-p]
 *~
 tags
+
+# Misc
+.~lock.*\#
+
+.agent-shell/
 
 # MacOS
 .DS_Store

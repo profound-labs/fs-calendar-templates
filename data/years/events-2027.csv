@@ -1,4 +1,4 @@
-date;day_text;note;label;phase;season;season_number;season_total;days
+date;day_text;footnote;label;phase;season;season_number;season_total;days
 2027-01-01;\LastQuarter;;;waning;\x;0;0;0
 2027-01-07;\NewMoon;;;new;\xHemanta;3;8;14
 2027-01-15;\FirstQuarter;;;waxing;\x;0;0;0

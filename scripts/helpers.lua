@@ -7,8 +7,8 @@ function isUposatha(event)
   return event.phase == "full" or event.phase == "new"
 end
 
-function hasNote(event)
-  return ok(event.note)
+function hasFootnote(event)
+  return ok(event.footnote)
 end
 
 function eventFmtUposathas(idx, max_idx, event, event_date, mark)
@@ -25,7 +25,7 @@ function eventFmtNotes(idx, max_idx, event, event_date, mark)
   if ok(event.date) then
     local fmtStr = "\\textsuperscript{%s} & \\x%sShort\\ %s: & %s \\\\"
     local d = event_date
-    tsp(string.format(fmtStr, mark.symbol, d:fmt("%b"), d:getday(), event.note))
+    tsp(string.format(fmtStr, mark.symbol, d:fmt("%b"), d:getday(), event.footnote))
   else
     tsp(" & & \\\\")
   end
@@ -146,7 +146,7 @@ function formatOne(events, idx)
   local date_as_text = "\\x"..d:fmt("%b").."Short\\space "..d:getday()
   local mark_as_text = "\\s{"..mark.symbol.."}"
 
-  return "{\\plannerEventCellFmt " .. mark_as_text .. " {\\plannerDateFmt " .. date_as_text .. ":}} & {\\plannerEventCellFmt " .. event.note .. "}"
+  return "{\\plannerEventCellFmt " .. mark_as_text .. " {\\plannerDateFmt " .. date_as_text .. ":}} & {\\plannerEventCellFmt " .. event.footnote .. "}"
 end
 
 function formatThreeForTable(events, indexes)

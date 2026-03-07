@@ -59,7 +59,7 @@ MOON_PHASE_DAY_TEXT: Dict[str, str] = {
 class CsvEvent(TypedDict):
     date: str
     day_text: str
-    note: str
+    footnote: str
     label: str
     phase: str
     season: str
@@ -71,7 +71,7 @@ def _to_csv_event(e: CalendarEvent) -> CsvEvent:
     return CsvEvent(
         date = e['date'].isoformat(),
         day_text = e['day_text'],
-        note = e['note'],
+        footnote = e['note'],
         label = e['label'],
         phase = e['phase'],
         season = e['season'],

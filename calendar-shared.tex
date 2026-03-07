@@ -112,8 +112,6 @@
 
 \usepackage{textcomp}
 
-\usepackage{soul}
-
 \usepackage{hyperref}
 \hypersetup{
   colorlinks=true,
@@ -334,7 +332,7 @@ yearEventsAsThreeColsTable(
 \begin{minipage}{\calPaperWidth}%
 \centering
 \fontsize{9}{12}\selectfont%
-\parseYearEventsAsThreeColsTable[filter pred = hasNote]%
+\parseYearEventsAsThreeColsTable[filter pred = hasFootnote]%
 \par%
 \end{minipage}}
 
@@ -618,7 +616,7 @@ monthMarksDayTextAsCornerMarks(\luastring{\theMonthName}, nil, \luastring{\@wall
 
 \newcommand{\calendarText}{%
   \NotesTwoCols{%
-    \parseMonthEvents[filter pred = hasNote, format func = eventFmtNotes, min events = 3]%
+    \parseMonthEvents[filter pred = hasFootnote, format func = eventFmtNotes, min events = 3]%
   }{%
     \parseMonthEvents[filter pred = isUposatha, format func = eventFmtUposathas, min events = 3]%
   }%

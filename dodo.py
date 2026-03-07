@@ -64,8 +64,8 @@ def task_all_templates():
                     yield get_template_task(year=year, language=language, template_name=template, placeholders=False, cropmarks=True,  varnishmask=False)
                     yield get_template_task(year=year, language=language, template_name=template, placeholders=False, cropmarks=True,  varnishmask=True)
 
-    yield all_templates_actions()
-    yield all_images_actions()
+    yield from all_templates_actions()
+    yield from all_images_actions()
 
 def get_template_path(year: int,
                       language: str,
