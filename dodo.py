@@ -8,7 +8,7 @@ import pymupdf
 from pymupdf.utils import get_pixmap
 from PIL import Image
 
-CAL_YEARS = [2026, 2027]
+CAL_YEARS = [2026, 2027, 2028, 2029, 2030]
 
 DOIT_CONFIG = {
     'default_tasks': [
