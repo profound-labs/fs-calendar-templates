@@ -28,3 +28,50 @@ poetry run doit clean "Template 2027 norwegian *"; poetry run doit run "Template
 ```
 
 The PDFs are written to `gh-pages/` folder.
+
+## Starting a new year
+
+```
+git clone ../fs-calendar-templates/ 2027_main
+cd 2027_main
+rm .git -rf
+git init
+
+poetry env use python3.14
+poetry install
+poetry shell
+```
+
+Remove extra folders from the `./templates` and `./images` folders.
+
+```
+rm templates/desk-* templates/wall-portrait/ templates/wall-portrait-gold-bg/ -r
+rm images/jpg_desk_* images/jpg_wall_portrait/ -r
+```
+
+Remove from `calendar.mako.tex` template:
+
+```
+% if placeholders:
+\wireHoles
+% else:
+\emptyPhotosAndQuotes
+% endif
+```
+
+Render the PDF for the given year. This also re-generates the year data CSV for that year.
+
+```
+doit run "Template 2027 portuguese wall-landscape placeholders:False cropmarks:False varnishmask:False"
+```
+
+PDF is in `gh-pages/`. If needs a clean folder, use `doit clean ...`
+
+First commit.
+
+```
+git add -A .
+git commit -m first
+```
+
+Landscape photos should be cropped to `1600 x 2366 px`.
