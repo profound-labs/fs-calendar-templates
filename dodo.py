@@ -107,6 +107,9 @@ def get_template_task(year: int,
         if not template_dir.exists():
             template_dir.mkdir(parents=True)
 
+        # Clean the previous build, so that a failed build doesn't leave a stale PDF.
+        template_path.unlink(missing_ok=True)
+
         tex_content = ""
 
         with open(f"templates/{template_name}/calendar.mako.tex", "r", encoding="utf-8") as f:
@@ -138,6 +141,9 @@ def get_template_task(year: int,
         'basename': f"Template {year} {language} {template_name} placeholders:{placeholders} cropmarks:{cropmarks} varnishmask:{varnishmask}",
         'actions': [CmdAction(_action)],
         'targets': [template_path],
+        # Always re-run. The events CSV is the only tracked dependency, but the
+        # PDF also depends on the .tex, .sty, text and image files.
+        'uptodate': [False],
         'verbosity': 1,
         'clean': True,
     }
