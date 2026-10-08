@@ -6,11 +6,19 @@ Visit the project page:
 
 <https://profound-labs.github.io/fs-calendar-templates/>
 
+To clean the distributed template PDF files, remove only the year folders, not the `assets/ fonts/` etc.
+
+```
+rm -r ./gh-pages/templates/20*
+```
+
 Build all years and languages defined in `dodo.py`:
 
 ```
 poetry run doit
 ```
+
+(Takes about 1 hour)
 
 After an update, edit `gh-pages/index.html`
 
